@@ -1,5 +1,7 @@
 -- common
 vim.g.mapleader = " "
+vim.g.solarized_termcolors=256
+
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.swapfile = false
@@ -7,6 +9,7 @@ vim.opt.number = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.background = "dark"
 
 require("packer").startup(function(use)
     -- plugin manager
@@ -53,10 +56,11 @@ require("packer").startup(function(use)
     -- themes
     use 'martinsione/darkplus.nvim'
     use 'folke/tokyonight.nvim'
+    use "altercation/vim-colors-solarized"
 end)
 
 -- set themes
 -- vim.cmd[[colorscheme tokyonight]]
-vim.cmd [[colorscheme darkplus]]
+vim.cmd [[colorscheme solarized]]
 
 require("keymap")

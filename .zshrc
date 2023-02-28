@@ -27,6 +27,7 @@ zstyle ':completion:*:default' menu select=1
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
 alias ll="ls -l --color=auto"
+alias lla="ls -l -a --color=auto"
 alias l="ls -CF --color=auto"
 
 ok="%F{35} %f"
