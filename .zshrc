@@ -30,9 +30,17 @@ alias ll="ls -l --color=auto"
 alias lla="ls -l -a --color=auto"
 alias l="ls -CF --color=auto"
 
+alias vim="nvim"
+
 ok="%F{35} %f"
 ng="%F{196} %f"
 os=""
 
 PROMPT="%F{237}%F{32}%K{237}%n%F{242} $os %F{32}%m%F{237}%K{240} %F{252}%~%k%F{240} %f"
 RPROMPT="%(?.$ok.$ng)"
+
+source "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

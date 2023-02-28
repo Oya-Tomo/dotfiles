@@ -1,6 +1,6 @@
 -- common
 vim.g.mapleader = " "
-vim.g.solarized_termcolors=256
+vim.g.solarized_termcolors = 256
 
 vim.opt.autoindent = true
 vim.opt.smartindent = true
@@ -10,6 +10,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.background = "dark"
+vim.opt.termguicolors = true
 
 require("packer").startup(function(use)
     -- plugin manager
@@ -24,6 +25,7 @@ require("packer").startup(function(use)
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
+    use "onsails/lspkind.nvim"
     -- snippets
     use "hrsh7th/cmp-vsnip"
     use "hrsh7th/vim-vsnip"
@@ -39,7 +41,7 @@ require("packer").startup(function(use)
     use {
         "windwp/nvim-autopairs",
         config = function()
-            require("nvim-autopairs").setup {}
+            require("nvim-autopairs").setup({})
         end,
     }
     -- file finder
@@ -56,11 +58,15 @@ require("packer").startup(function(use)
     -- themes
     use 'martinsione/darkplus.nvim'
     use 'folke/tokyonight.nvim'
+    use "lunarvim/Onedarker.nvim"
     use "altercation/vim-colors-solarized"
 end)
 
 -- set themes
+vim.cmd[[colorscheme onedarker]]
 -- vim.cmd[[colorscheme tokyonight]]
-vim.cmd [[colorscheme solarized]]
+-- vim.cmd [[colorscheme solarized]]
 
 require("keymap")
+require("base")
+require("lsp")
