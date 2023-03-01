@@ -1,3 +1,4 @@
+# Author: Oya-Tomo
 autoload -Uz colors
 colors
 

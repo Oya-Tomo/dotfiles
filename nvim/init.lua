@@ -56,10 +56,10 @@ require("packer").startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
     -- themes
-    use 'martinsione/darkplus.nvim'
-    use 'folke/tokyonight.nvim'
+    -- use 'martinsione/darkplus.nvim'
+    -- use 'folke/tokyonight.nvim'
+    -- use "altercation/vim-colors-solarized"
     use "lunarvim/Onedarker.nvim"
-    use "altercation/vim-colors-solarized"
 end)
 
 -- set themes
