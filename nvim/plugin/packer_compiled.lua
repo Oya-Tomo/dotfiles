@@ -104,10 +104,10 @@ _G.packer_plugins = {
     path = "/home/oyatomo/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
-  ["darkplus.nvim"] = {
+  ["lspkind.nvim"] = {
     loaded = true,
-    path = "/home/oyatomo/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
-    url = "https://github.com/martinsione/darkplus.nvim"
+    path = "/home/oyatomo/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -165,16 +165,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/oyatomo/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/home/oyatomo/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
-    url = "https://github.com/folke/tokyonight.nvim"
-  },
-  ["vim-colors-solarized"] = {
-    loaded = true,
-    path = "/home/oyatomo/.local/share/nvim/site/pack/packer/start/vim-colors-solarized",
-    url = "https://github.com/altercation/vim-colors-solarized"
   },
   ["vim-vsnip"] = {
     loaded = true,

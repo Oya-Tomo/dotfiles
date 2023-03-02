@@ -1,5 +1,2 @@
+require("config")
 require("plugin")
-require("base")
-require("options")
-require("lsp")
-require("keymap")

@@ -48,3 +48,8 @@ require("packer").startup(function(use)
     use "lunarvim/Onedarker.nvim"
 end)
 
+require("plugin.lualine_rc")
+require("plugin.telescope_rc")
+require("plugin.mason_rc")
+require("plugin.lspkind_rc")
+require("plugin.cmp_rc")
