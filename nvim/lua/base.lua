@@ -1,12 +1,5 @@
-vim.diagnostic.config({
-    virtual_text = {
-        source = "always",
-        prefix = '●',
-    },
-    severity_sort = true,
-    float = {
-        source = "always",
-    },
-})
+vim.cmd("autocmd!")
+vim.scriptencoding = "utf-8"
+vim.opt.number = true
 
-vim.diagnostic.enable()
+vim.cmd[[colorscheme onedarker]]
