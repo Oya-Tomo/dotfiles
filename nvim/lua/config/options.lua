@@ -12,3 +12,6 @@ vim.opt.swapfile = false
 
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
+
+vim.opt.listchars = {eol = '↴'}
+vim.opt.list = true

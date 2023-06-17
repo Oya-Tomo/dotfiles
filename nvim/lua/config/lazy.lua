@@ -31,6 +31,7 @@ require("lazy").setup({
     "hrsh7th/vim-vsnip",
 
     "windwp/nvim-autopairs",
+    "lukas-reineke/indent-blankline.nvim",
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.1",
