@@ -47,4 +47,5 @@ require("lazy").setup({
         dependencies = { 'kyazdani42/nvim-web-devicons' }
     },
     "rebelot/kanagawa.nvim",
+    "lewis6991/gitsigns.nvim",
 })
