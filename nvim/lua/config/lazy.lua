@@ -38,11 +38,6 @@ require("lazy").setup({
         dependencies = { 'nvim-lua/plenary.nvim' },
     },
     {
-        "nvim-treesitter/nvim-treesitter",
-        version = false,
-        build = ":TSUpdate",
-    },
-    {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'kyazdani42/nvim-web-devicons' }
     },
