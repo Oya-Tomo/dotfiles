@@ -32,6 +32,7 @@ alias lla="ls -l -a --color=auto"
 alias l="ls -CF --color=auto"
 
 alias vim="nvim"
+alias ide="~/.config/wezterm/alias/ide.sh"
 
 ok="%F{35} %f"
 ng="%F{196} %f"
