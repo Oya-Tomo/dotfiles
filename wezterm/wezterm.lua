@@ -60,7 +60,7 @@ return {
         { key = "i", mods = "CTRL|ALT",   action = wezterm.action.EmitEvent("ide"), }
     },
     color_scheme = "Darkside",
-    font = wezterm.font_with_fallback({ "Hack" }),
+    font = wezterm.font_with_fallback({ "Hack Nerd Font" }),
     font_size = 11,
     -- use_ime = true,
 }
