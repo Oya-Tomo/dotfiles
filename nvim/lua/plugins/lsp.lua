@@ -25,7 +25,23 @@ return {
             )
         end,
     },
-    "williamboman/mason-lspconfig.nvim",
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            require('mason').setup()
+            require('mason-lspconfig').setup()
+
+            require('mason-lspconfig').setup_handlers({
+                function(server)
+                    require('lspconfig')[server].setup({
+                        capabilities = capabilities,
+                    })
+                end
+            })
+        end,
+    },
     {
         "hrsh7th/nvim-cmp",
         config = function()
@@ -59,7 +75,7 @@ return {
                     ["<CR>"] = cmp.mapping.confirm { select = true },
                 }),
                 experimental = {
-                    ghost_text = true,
+                    ghost_text = false,
                 },
             })
         end,
