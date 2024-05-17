@@ -1,3 +1,4 @@
+vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 vim.opt.title = true
@@ -15,3 +16,4 @@ vim.opt.background = "dark"
 
 vim.opt.listchars = {eol = '↴'}
 vim.opt.list = true
+vim.opt.number = true

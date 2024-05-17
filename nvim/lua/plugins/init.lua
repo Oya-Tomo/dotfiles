@@ -1,6 +1,0 @@
-require("plugins.cmp_rc")
-require("plugins.lspkind_rc")
-require("plugins.lualine_rc")
-require("plugins.mason_rc")
-require("plugins.telescope_rc")
-require("plugins.indent_blankline_rc")
