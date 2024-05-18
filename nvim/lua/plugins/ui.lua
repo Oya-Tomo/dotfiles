@@ -53,5 +53,20 @@ return {
                 },
             })
         end,
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        config = function()
+            local highlight = {
+                "CursorColumn",
+                "Whitespace",
+            }
+            require("ibl").setup({
+                debounce = 100,
+                indent = { char = "┊" },
+                scope = { enabled = false },
+            })
+        end,
     }
 }
