@@ -13,8 +13,8 @@ $character
 right_format = '$status $git_branch $battery'
 
 [character]
-success_symbol = '[\)](bold green)'
-error_symbol = '[\)](bold red) '
+success_symbol = '[>>>](bold green)'
+error_symbol = '[>>>](bold red) '
 
 [battery]
 disabled = false
