@@ -1,0 +1,63 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](fg:#333333)\
+$time\
+[ ](fg:#333333 bg:#444444)\
+$directory\
+[ ](fg:#444444)\
+\n\
+$character
+"""
+
+right_format = '$status $git_branch $battery'
+
+[character]
+success_symbol = '[\)](bold green)'
+error_symbol = '[\)](bold red) '
+
+[battery]
+disabled = false
+format = '[$percentage $symbol](fg:#999999)'
+
+[[battery.display]]
+threshold = 100
+charging_symbol = '[󰂄](fg:#999999)'
+discharging_symbol = '[󰁹](fg:#999999)'
+
+[[battery.display]]
+threshold = 50
+charging_symbol = '[󰂄](fg:#999999)'
+discharging_symbol = '[󰁽](fg:#999999)'
+
+[[battery.display]]
+threshold = 30
+discharging_symbol = '[charge battery 󰁺](fg:yellow)'
+
+[[battery.display]]
+threshold = 15
+discharging_symbol = '[charge battery soon 󰁺](fg:red)'
+
+[directory]
+style = 'fg:#008855 bg:#444444'
+format = '[$path]($style)'
+truncation_length = 1
+truncation_symbol = '…/'
+
+[git_branch]
+style = 'fg:#999999'
+symbol = ''
+format = '[$branch $symbol]($style)'
+
+[status]
+style = 'fg:red'
+success_style = 'fg:green'
+format = '[$symbol]($style)'
+symbol = '✕'
+success_symbol = '◯'
+disabled=false
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute
+format = '[](fg:green bg:#333333)[ $time ](fg:#aaaaaa bg:#333333)'

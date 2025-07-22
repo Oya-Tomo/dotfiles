@@ -7,6 +7,7 @@ rm -rf ~/.zshrc
 cp -r ./nvim ~/.config/
 cp -r ./wezterm ~/.config/
 cp ./.zshrc ~/
+cp ./starship.toml ~/.config/
 
 echo "Replaced dotfiles."
 
