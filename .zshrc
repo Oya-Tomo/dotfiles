@@ -23,6 +23,8 @@ setopt extended_glob
 
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
+export LS_COLORS="no=00:fi=37:di=32:ln=36:ex=93"
+
 zstyle ':completion:*:default' menu select=1
 
 alias ls="ls --color=auto"
@@ -33,13 +35,6 @@ alias l="ls -CF --color=auto"
 
 alias vim="nvim"
 alias ide="~/.config/wezterm/alias/ide.sh"
-
-ok="%F{35} %f"
-ng="%F{196} %f"
-os="%F{252}%f"
-
-# PROMPT="%F{237}%F{32}%K{237}%n%F{242} $os %F{32}%m%F{237}%K{240} %F{252}%~%k%F{240} %f"
-# RPROMPT="%(?.$ok.$ng)"
 
 eval "$(starship init zsh)"
 
