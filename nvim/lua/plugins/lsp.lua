@@ -1,7 +1,7 @@
 return {
     -- lsp
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         build = ":MasonUpdate",
         opts = {},
     },
@@ -26,20 +26,16 @@ return {
         end,
     },
     {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-            require('mason').setup()
-            require('mason-lspconfig').setup()
-
-            require('mason-lspconfig').setup_handlers({
-                function(server)
-                    require('lspconfig')[server].setup({
-                        capabilities = capabilities,
-                    })
-                end
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
+        config = function(_, opts)
+            require("mason-lspconfig").setup({
+                automatic_enable = true
             })
         end,
-    },
+    }
 }
