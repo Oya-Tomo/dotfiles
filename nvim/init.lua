@@ -254,6 +254,9 @@ require("lazy").setup({
         vim.keymap.set('n', '<leader>ghv', function() require('gitsigns').preview_hunk() end, { desc = "Preview Hunk" })
       end,
     },
+
+    -- Minimap
+    { "wfxr/minimap.vim" },
   },
   install = { colorscheme = { "kanagawa" } },
   checker = { enabled = true },

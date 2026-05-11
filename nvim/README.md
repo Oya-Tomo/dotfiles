@@ -14,6 +14,7 @@ This is a custom Neovim configuration built with `lazy.nvim` as the plugin manag
   - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) for a sleek status line.
   - [which-key.nvim](https://github.com/folke/which-key.nvim) for helpful keybinding hints.
   - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) for file type icons.
+  - [minimap.vim](https://github.com/sharkdp/minimap.vim) for a code minimap.
 
 ## ⌨️ Keybindings
 
