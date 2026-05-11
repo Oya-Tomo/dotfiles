@@ -36,14 +36,14 @@ alias l="ls -CF --color=auto"
 alias vim="nvim"
 alias ide="~/.config/wezterm/alias/ide.sh"
 
+alias tsen-on="sudo tailscale up --exit-node=${TS_EXIT_NODE}"
+alias tsen-off="sudo tailscale up --exit-node="
+
+alias claude-gemma4="ANTHROPIC_BASE_URL=http://${CLAUDE_LOCAL_HOST}:${CLAUDE_LOCAL_PORT} ANTHROPIC_API_KEY='llama.cpp' claude --model ${CLAUDE_LOCAL_MODEL}"
+
 eval "$(starship init zsh)"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 source "$HOME/.cargo/env"
-
-export PATH="$PATH:$HOME/Packages/flutter/bin"
-export PATH="$PATH:$HOME/.pub-cache/bin"
-export PATH="$PATH:$HOME/Packages/android-studio/jbr/bin"
-export PATH="$PATH:$HOME/Packages/nvim-linux-x86_64/bin"
