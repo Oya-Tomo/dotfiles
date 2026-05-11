@@ -20,6 +20,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
+
 -- Tab navigation
 vim.keymap.set("n", "<leader>tc", vim.cmd.tabnew,  { desc = "Tab Create" })
 vim.keymap.set("n", "<leader>tn", vim.cmd.tabnext, { desc = "Tab Next" })
@@ -104,7 +108,7 @@ require("lazy").setup({
               map("n", "<leader>gtd", vim.lsp.buf.type_definition, { silent = true, buffer = buf, desc = "Go to Type Definition" })
             end
             if client:supports_method("textDocument/references") then
-              map("n", "<leader>gr", function() vim.lsp.buf.references({ focusable = false }) end, { silent = true, buffer = buf, desc = "Find References" })
+              map("n", "<leader>gr", function() vim.lsp.buf.references({ focusable = false, includeDeclaration = true }) end, { silent = true, buffer = buf, desc = "Find References" })
             end
             if client:supports_method("textDocument/hover") then
               map("n", "<leader>hh", vim.lsp.buf.hover, { silent = true, buffer = buf, desc = "Hover Documentation" })
@@ -122,12 +126,9 @@ require("lazy").setup({
               map("n", "<leader>cf", vim.lsp.buf.format, { silent = true, buffer = buf, desc = "Format Document" })
             end
 
-            map("n", "<leader>gl", function()
-              local diags = vim.diagnostic.get({ bufnr = buf })
-              if #diags > 0 then
-                vim.api.nvim_echo({ { diags[1].message, "DiagnosticError" } }, true, {})
-              end
-            end, { silent = true, buffer = buf, desc = "Show Diagnostic" })
+            map("n", "<leader>lds", vim.diagnostic.open_float, { silent = true, buffer = buf, desc = "Show Diagnostic" })
+            map("n", "<leader>ldn", function() vim.diagnostic.jump({ count = 1 }) end, { silent = true, buffer = buf, desc = "Next Diagnostic" })
+            map("n", "<leader>ldp", function() vim.diagnostic.jump({ count = -1 }) end, { silent = true, buffer = buf, desc = "Prev Diagnostic" })
           end,
         })
       end,
@@ -235,6 +236,16 @@ require("lazy").setup({
             theme = "kanagawa",
           },
         })
+      end,
+    },
+
+    -- Git signs
+    {
+      "lewis6991/gitsigns.nvim",
+      config = function()
+        require("gitsigns").setup()
+        vim.keymap.set('n', '<leader>ghn', function() require('gitsigns').next_hunk() end, { desc = "Next Hunk" })
+        vim.keymap.set('n', '<leader>ghp', function() require('gitsigns').prev_hunk() end, { desc = "Prev Hunk" })
       end,
     },
   },
