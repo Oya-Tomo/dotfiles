@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 
 -- Alias Operation Custom Event
 wezterm.on("ide", function(window, pane)
+    -- Split top/bottom; bottom pane gets further divided
     window:perform_action(
         wezterm.action.SplitPane({
             direction = 'Down',
@@ -9,18 +10,13 @@ wezterm.on("ide", function(window, pane)
         }),
         pane
     )
+    -- Divide the bottom pane into 3 columns
     window:perform_action(
-        wezterm.action.SplitPane({
-            direction = 'Right',
-            size = { Percent = 70 },
-        }),
+        wezterm.action.SplitPane({ direction = 'Right', size = { Percent = 66 } }),
         pane
     )
     window:perform_action(
-        wezterm.action.SplitPane({
-            direction = 'Right',
-            size = { Percent = 50 },
-        }),
+        wezterm.action.SplitPane({ direction = 'Right', size = { Percent = 50 } }),
         pane
     )
 end)
