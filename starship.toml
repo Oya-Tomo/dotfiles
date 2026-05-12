@@ -10,7 +10,7 @@ $directory\
 $character
 """
 
-right_format = '$status $git_branch $battery'
+right_format = '$status $git_branch $battery ${custom.ssh-detect}'
 
 [character]
 success_symbol = '[>>>](bold yellow)'
@@ -61,3 +61,8 @@ disabled=false
 disabled = false
 time_format = "%R" # Hour:Minute
 format = '[](fg:yellow bg:#333344)[ $time ](fg:#aaaaaa bg:#333344)'
+
+[custom.ssh-detect]
+when = 'test -n "$SSH_CONNECTION"'
+format = '🌐'
+
