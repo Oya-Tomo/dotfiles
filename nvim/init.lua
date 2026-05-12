@@ -20,6 +20,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- clipboard
+vim.opt.clipboard = "unnamedplus"
+
 -- Ambiguous width support
 -- vim.opt.ambiwidth = "double"
 
