@@ -116,28 +116,28 @@ require("lazy").setup({
             local map = vim.keymap.set
 
             if client:supports_method("textDocument/definition") then
-              map("n", "<leader>gd", vim.lsp.buf.definition, { silent = true, buffer = buf, desc = "Go to Definition" })
+              map("n", "<leader>lgd", vim.lsp.buf.definition, { silent = true, buffer = buf, desc = "Go to Definition" })
             end
             if client:supports_method("textDocument/typeDefinition") then
-              map("n", "<leader>gtd", vim.lsp.buf.type_definition, { silent = true, buffer = buf, desc = "Go to Type Definition" })
+              map("n", "<leader>lgtd", vim.lsp.buf.type_definition, { silent = true, buffer = buf, desc = "Go to Type Definition" })
             end
             if client:supports_method("textDocument/references") then
-              map("n", "<leader>gr", function() vim.lsp.buf.references({ focusable = false, includeDeclaration = true }) end, { silent = true, buffer = buf, desc = "Find References" })
+              map("n", "<leader>lgr", function() vim.lsp.buf.references({ focusable = false, includeDeclaration = true }) end, { silent = true, buffer = buf, desc = "Find References" })
             end
             if client:supports_method("textDocument/hover") then
-              map("n", "<leader>hh", vim.lsp.buf.hover, { silent = true, buffer = buf, desc = "Hover Documentation" })
+              map("n", "<leader>lhh", vim.lsp.buf.hover, { silent = true, buffer = buf, desc = "Hover Documentation" })
             end
             if client:supports_method("textDocument/rename") then
-              map("n", "<leader>rn", vim.lsp.buf.rename, { silent = true, buffer = buf, desc = "Rename Symbol" })
+              map("n", "<leader>lrn", vim.lsp.buf.rename, { silent = true, buffer = buf, desc = "Rename Symbol" })
             end
             if client:supports_method("textDocument/codeAction") then
-              map("n", "<leader>ca", vim.lsp.buf.code_action, { silent = true, buffer = buf, desc = "Code Action" })
+              map("n", "<leader>lca", vim.lsp.buf.code_action, { silent = true, buffer = buf, desc = "Code Action" })
             end
             if client:supports_method("textDocument/implementation") then
-              map("n", "<leader>gi", vim.lsp.buf.implementation, { silent = true, buffer = buf, desc = "Go to Implementation" })
+              map("n", "<leader>lgi", vim.lsp.buf.implementation, { silent = true, buffer = buf, desc = "Go to Implementation" })
             end
             if client:supports_method("textDocument/formatting") then
-              map("n", "<leader>cf", vim.lsp.buf.format, { silent = true, buffer = buf, desc = "Format Document" })
+              map("n", "<leader>lf", vim.lsp.buf.format, { silent = true, buffer = buf, desc = "Format Document" })
             end
 
             map("n", "<leader>lds", vim.diagnostic.open_float, { silent = true, buffer = buf, desc = "Show Diagnostic" })
