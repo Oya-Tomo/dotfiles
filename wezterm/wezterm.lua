@@ -21,16 +21,6 @@ wezterm.on("ide", function(window, pane)
     )
 end)
 
-wezterm.on("transparent", function(window, pane)
-    local overrides = window:get_config_overrides() or {}
-    if overrides.window_background_opacity == 0.9 then
-        overrides.window_background_opacity = 1.0
-    else
-        overrides.window_background_opacity = 0.9
-    end
-    window:set_config_overrides(overrides)
-end)
-
 return {
     leader = { key = 'l', mods = 'CTRL', timeout_milliseconds = 1000 },
     keys = {
@@ -64,11 +54,9 @@ return {
         { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom("Clipboard"), },
         -- Alias Shortcut
         { key = "i", mods = "CTRL|ALT",   action = wezterm.action.EmitEvent("ide"), },
-        { key = "t", mods = "CTRL",   action = wezterm.action.EmitEvent("transparent"), }
     },
-    color_scheme = "Darkside",
+    color_scheme = "Kanagawa (Gogh)",
     font = wezterm.font_with_fallback({ "Hack Nerd Font Mono" }),
     font_size = 11,
     -- use_ime = true,
-    window_background_opacity = 0.9,
 }

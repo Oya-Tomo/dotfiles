@@ -23,7 +23,9 @@ setopt extended_glob
 
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-export LS_COLORS="no=00:fi=37:di=32:ln=36:ex=93"
+# export LS_COLORS="no=00:fi=37:di=32:ln=36:ex=93"
+# export LS_COLORS="no=00:fi=37:di=01;34:ln=01;36:ex=01;32:pi=33:so=35:bd=33;01:cd=33;01:or=01;31:mi=01;31:ow=34;42"
+export LS_COLORS="no=00:fi=37:di=34:ln=36:ex=32:pi=33:so=35:bd=33:cd=33:or=31:mi=31:ow=34;42"
 
 zstyle ':completion:*:default' menu select=1
 

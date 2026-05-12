@@ -1,11 +1,11 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](fg:#333333)\
+[](fg:#333344)\
 $time\
-[ ](fg:#333333 bg:#444444)\
+[ ](fg:#333344 bg:#444455)\
 $directory\
-[ ](fg:#444444)\
+[ ](fg:#444455)\
 \n\
 $character
 """
@@ -13,8 +13,8 @@ $character
 right_format = '$status $git_branch $battery'
 
 [character]
-success_symbol = '[>>>](bold green)'
-error_symbol = '[>>>](bold red) '
+success_symbol = '[>>>](bold yellow)'
+error_symbol = '[>>>](bold yellow)'
 
 [battery]
 disabled = false
@@ -39,7 +39,7 @@ threshold = 15
 discharging_symbol = '[charge battery soon 󰁺](fg:red)'
 
 [directory]
-style = 'fg:#008855 bg:#444444'
+style = 'fg:yellow bg:#444455'
 format = '[$path]($style)'
 truncation_length = 1
 truncation_symbol = '…/'
@@ -60,4 +60,4 @@ disabled=false
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute
-format = '[](fg:green bg:#333333)[ $time ](fg:#aaaaaa bg:#333333)'
+format = '[](fg:yellow bg:#333344)[ $time ](fg:#aaaaaa bg:#333344)'
