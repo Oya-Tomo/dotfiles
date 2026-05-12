@@ -1,4 +1,4 @@
 [tools]
 
-python="3.11.9"
-node="20"
+python="3.12"
+node="24.15"
