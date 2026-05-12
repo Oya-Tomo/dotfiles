@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -39,7 +39,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Tab navigation
-vim.keymap.set("n", "<leader>tc", vim.cmd.tabnew,  { desc = "Tab Create" })
+vim.keymap.set("n", "<leader>tc", vim.cmd.tabnew, { desc = "Tab Create" })
 vim.keymap.set("n", "<leader>tn", vim.cmd.tabnext, { desc = "Tab Next" })
 vim.keymap.set("n", "<leader>tp", vim.cmd.tabprev, { desc = "Tab Prev" })
 vim.keymap.set("n", "<leader>td", vim.cmd.tabclose, { desc = "Tab Delete" })
@@ -52,7 +52,7 @@ vim.keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Window Left" })
 
 -- Splits
 vim.keymap.set("n", "<leader>wsv", vim.cmd.vsplit, { desc = "Vertical Split" })
-vim.keymap.set("n", "<leader>wsh", vim.cmd.split,   { desc = "Horizontal Split" })
+vim.keymap.set("n", "<leader>wsh", vim.cmd.split, { desc = "Horizontal Split" })
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -61,7 +61,7 @@ require("lazy").setup({
     { "rebelot/kanagawa.nvim" },
 
     -- Keybind helper
-    { "folke/which-key.nvim", event = "VeryLazy" },
+    { "folke/which-key.nvim",       event = "VeryLazy" },
 
     -- Icons
     { "nvim-tree/nvim-web-devicons" },
@@ -76,7 +76,7 @@ require("lazy").setup({
         })
       end,
     },
-   -- Bridge: auto-enable mason-installed servers
+    -- Bridge: auto-enable mason-installed servers
     {
       "williamboman/mason-lspconfig.nvim",
       dependencies = "mason.nvim",
@@ -116,35 +116,87 @@ require("lazy").setup({
             local map = vim.keymap.set
 
             if client:supports_method("textDocument/definition") then
-              map("n", "<leader>lgd", vim.lsp.buf.definition, { silent = true, buffer = buf, desc = "Go to Definition" })
+              map("n", "<leader>lgd", vim.lsp.buf.definition,
+                { silent = true, buffer = buf, desc = "Go to Definition" })
             end
             if client:supports_method("textDocument/typeDefinition") then
-              map("n", "<leader>lgtd", vim.lsp.buf.type_definition, { silent = true, buffer = buf, desc = "Go to Type Definition" })
+              map("n", "<leader>lgtd", vim.lsp.buf.type_definition,
+                {
+                  silent = true,
+                  buffer = buf,
+                  desc =
+                  "Go to Type Definition"
+                })
             end
             if client:supports_method("textDocument/references") then
-              map("n", "<leader>lgr", function() vim.lsp.buf.references({ focusable = false, includeDeclaration = true }) end, { silent = true, buffer = buf, desc = "Find References" })
+              map("n", "<leader>lgr",
+                function() vim.lsp.buf.references({ focusable = false, includeDeclaration = true }) end,
+                { silent = true, buffer = buf, desc = "Find References" })
             end
             if client:supports_method("textDocument/hover") then
-              map("n", "<leader>lhh", vim.lsp.buf.hover, { silent = true, buffer = buf, desc = "Hover Documentation" })
+              map("n", "<leader>lhh", vim.lsp.buf.hover,
+                {
+                  silent = true,
+                  buffer = buf,
+                  desc =
+                  "Hover Documentation"
+                })
             end
             if client:supports_method("textDocument/rename") then
-              map("n", "<leader>lrn", vim.lsp.buf.rename, { silent = true, buffer = buf, desc = "Rename Symbol" })
+              map("n", "<leader>lrn", vim.lsp.buf.rename,
+                { silent = true, buffer = buf, desc = "Rename Symbol" })
             end
             if client:supports_method("textDocument/codeAction") then
-              map("n", "<leader>lca", vim.lsp.buf.code_action, { silent = true, buffer = buf, desc = "Code Action" })
+              map("n", "<leader>lca", vim.lsp.buf.code_action,
+                { silent = true, buffer = buf, desc = "Code Action" })
             end
             if client:supports_method("textDocument/implementation") then
-              map("n", "<leader>lgi", vim.lsp.buf.implementation, { silent = true, buffer = buf, desc = "Go to Implementation" })
+              map("n", "<leader>lgi", vim.lsp.buf.implementation,
+                {
+                  silent = true,
+                  buffer = buf,
+                  desc =
+                  "Go to Implementation"
+                })
             end
-            if client:supports_method("textDocument/formatting") then
-              map("n", "<leader>lf", vim.lsp.buf.format, { silent = true, buffer = buf, desc = "Format Document" })
-            end
+            --if client:supports_method("textDocument/formatting") then
+            --  map("n", "<leader>lf", vim.lsp.buf.format, { silent = true, buffer = buf, desc = "Format Document" })
+            --end
 
-            map("n", "<leader>lds", vim.diagnostic.open_float, { silent = true, buffer = buf, desc = "Show Diagnostic" })
-            map("n", "<leader>ldn", function() vim.diagnostic.jump({ count = 1 }) end, { silent = true, buffer = buf, desc = "Next Diagnostic" })
-            map("n", "<leader>ldp", function() vim.diagnostic.jump({ count = -1 }) end, { silent = true, buffer = buf, desc = "Prev Diagnostic" })
+            map("n", "<leader>lds", vim.diagnostic.open_float,
+              { silent = true, buffer = buf, desc = "Show Diagnostic" })
+            map("n", "<leader>ldn", function() vim.diagnostic.jump({ count = 1 }) end,
+              { silent = true, buffer = buf, desc = "Next Diagnostic" })
+            map("n", "<leader>ldp",
+              function() vim.diagnostic.jump({ count = -1 }) end,
+              { silent = true, buffer = buf, desc = "Prev Diagnostic" })
           end,
         })
+      end,
+    },
+    {
+      "stevearc/conform.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      cmd = { "ConformInfo" },
+      opts = {
+        formatters_by_ft = {
+          python = { "black" },
+        },
+        format_on_save = {
+          timeout_ms = 500,
+          lsp_fallback = true,
+        },
+      },
+      config = function(_, opts)
+        require("conform").setup(opts)
+
+        vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+          require("conform").format({
+            lsp_fallback = true,
+            async = false,
+            timeout_ms = 500,
+          })
+        end, { desc = "Format File or Range (in visual mode)" })
       end,
     },
 
@@ -158,7 +210,7 @@ require("lazy").setup({
       },
     },
 
-   -- Fuzzy finder (Telescope)
+    -- Fuzzy finder (Telescope)
     {
       "nvim-telescope/telescope.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
@@ -194,7 +246,8 @@ require("lazy").setup({
               components = {
                 kind_icon = {
                   text = function(ctx)
-                    return require("lspkind").symbol_map[ctx.kind] or ""
+                    return require("lspkind").symbol_map
+                        [ctx.kind] or ""
                   end,
                 },
               },
@@ -259,13 +312,20 @@ require("lazy").setup({
       config = function()
         require("gitsigns").setup()
         -- Navigation
-        vim.keymap.set('n', '<leader>ghn', function() require('gitsigns').next_hunk() end, { desc = "Next Hunk" })
-        vim.keymap.set('n', '<leader>ghp', function() require('gitsigns').prev_hunk() end, { desc = "Prev Hunk" })
+        vim.keymap.set('n', '<leader>ghn', function() require('gitsigns').next_hunk() end,
+          { desc = "Next Hunk" })
+        vim.keymap.set('n', '<leader>ghp', function() require('gitsigns').prev_hunk() end,
+          { desc = "Prev Hunk" })
         -- Actions
-        vim.keymap.set('n', '<leader>ghb', function() require('gitsigns').blame_line({ hl = true }) end, { desc = "Git Blame" })
-        vim.keymap.set('n', '<leader>ghs', function() require('gitsigns').stage_hunk() end, { desc = "Stage Hunk" })
-        vim.keymap.set('n', '<leader>ghr', function() require('gitsigns').reset_hunk() end, { desc = "Reset Hunk" })
-        vim.keymap.set('n', '<leader>ghv', function() require('gitsigns').preview_hunk() end, { desc = "Preview Hunk" })
+        vim.keymap.set('n', '<leader>ghb',
+          function() require('gitsigns').blame_line({ hl = true }) end,
+          { desc = "Git Blame" })
+        vim.keymap.set('n', '<leader>ghs', function() require('gitsigns').stage_hunk() end,
+          { desc = "Stage Hunk" })
+        vim.keymap.set('n', '<leader>ghr', function() require('gitsigns').reset_hunk() end,
+          { desc = "Reset Hunk" })
+        vim.keymap.set('n', '<leader>ghv', function() require('gitsigns').preview_hunk() end,
+          { desc = "Preview Hunk" })
       end,
     },
 
@@ -276,5 +336,22 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
-vim.cmd.colorscheme("kanagawa")
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python", "cpp", "rust" },
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.expandtab = true
+  end,
+})
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "lua", "javascript", "typescript", "html" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.expandtab = true
+  end,
+})
+
+vim.cmd.colorscheme("kanagawa")
