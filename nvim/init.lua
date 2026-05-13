@@ -203,7 +203,7 @@ require("lazy").setup({
       cmd = { "ConformInfo" },
       opts = {
         formatters_by_ft = {
-          python = { "ruff" },
+          python = { "black" },
         },
         format_on_save = {
           timeout_ms = 5000,
