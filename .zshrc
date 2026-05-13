@@ -39,7 +39,7 @@ alias ide="~/.config/wezterm/alias/ide.sh"
 alias tsen-on="sudo tailscale up --exit-node=${TS_EXIT_NODE}"
 alias tsen-off="sudo tailscale up --exit-node="
 
-alias claude-gemma4="ANTHROPIC_BASE_URL=http://${CLAUDE_LOCAL_HOST}:${CLAUDE_LOCAL_PORT} ANTHROPIC_API_KEY='llama.cpp' claude --model ${CLAUDE_LOCAL_MODEL}"
+alias claude-local="ANTHROPIC_BASE_URL=http://${CLAUDE_LOCAL_HOST}:${CLAUDE_LOCAL_PORT} ANTHROPIC_API_KEY='llama.cpp' claude --model ${CLAUDE_LOCAL_MODEL}"
 
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
