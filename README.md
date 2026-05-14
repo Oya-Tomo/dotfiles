@@ -6,8 +6,8 @@ My personal configuration files for a productive development environment.
 
 | Component | Configuration | Description |
 | :--- | :--- | :--- |
-| **Neovim** | `nvim/` | Text editor configuration |
-| **WezTerm** | `wezterm/` | Terminal emulator configuration |
+| **Neovim** | [`nvim/`](nvim/README.md) | LSP-driven editor with blink.cmp, Telescope, gitsigns, conform.nvim and more |
+| **WezTerm** | [`wezterm/`](wezterm/README.md) | Terminal with Kanagawa colorscheme, custom pane/tab shortcuts, and IDE layout support |
 | **Zsh** | `.zshrc` | Shell configuration |
 | **Starship** | `starship.toml` | Shell prompt configuration |
 | **Mise** | `mise/` | Tool version manager configuration |
