@@ -26,3 +26,6 @@ keybind = ctrl+shift+v=paste_from_clipboard
 font-family = Hack Nerd Font Mono
 font-size = 11
 theme = Kanagawa Wave
+
+# Support SSH
+shell-integration-features = ssh-env,ssh-terminfo
