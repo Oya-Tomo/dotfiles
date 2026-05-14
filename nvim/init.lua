@@ -354,6 +354,17 @@ require("lazy").setup({
 
     -- Minimap
     { "wfxr/minimap.vim" },
+
+    -- Indent guides
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      main = "ibl",
+      opts = {
+        indent = {
+          char = "▏",
+        },
+      },
+    },
   },
   install = { colorscheme = { "kanagawa" } },
   checker = { enabled = true },
