@@ -34,7 +34,11 @@ alias lla="ls -l -a --color=auto"
 alias l="ls -CF --color=auto"
 
 alias vim="nvim"
-alias ide="~/.config/wezterm/alias/ide.sh"
+if [ "$TERM_PROGRAM" = "ghostty" ]; then
+  ide() { echo "Ghostty does not support IDE layout from script." }
+elif [ "$TERM_PROGRAM" = "WezTerm" ]; then
+  alias ide="~/.config/wezterm/alias/ide.sh"
+fi
 
 alias tsen-on="sudo tailscale up --exit-node=${TS_EXIT_NODE}"
 alias tsen-off="sudo tailscale up --exit-node="
