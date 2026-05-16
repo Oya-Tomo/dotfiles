@@ -4,12 +4,14 @@ rm -rf ~/.config/nvim
 rm -rf ~/.config/wezterm
 rm -rf ~/.config/lazygit
 rm -rf ~/.config/ghostty
+rm -rf ~/.config/batto
 rm -rf ~/.zshrc
 
 cp -r ./nvim ~/.config/
 cp -r ./wezterm ~/.config/
 cp -r ./lazygit ~/.config/
 cp -r ./ghostty ~/.config/
+cp -r ./batto ~/.config/
 cp ./.zshrc ~/
 cp ./starship.toml ~/.config/
 
