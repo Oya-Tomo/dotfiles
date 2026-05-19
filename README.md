@@ -9,8 +9,9 @@ My personal configuration files for a productive development environment.
 | **Neovim** | [`nvim/`](nvim/README.md) | LSP-driven editor with blink.cmp, Telescope, gitsigns, conform.nvim and more |
 | **WezTerm** | [`wezterm/`](wezterm/README.md) | Terminal with Kanagawa colorscheme, custom pane/tab shortcuts, and IDE layout support |
 | **Ghostty** | [`ghostty/`](ghostty/README.md) | Terminal with WezTerm-compatible keybindings, Kanagawa theme, and Hack Nerd Font |
-| **Zsh** | `.zshrc` | Shell configuration |
+| **Zsh** | `zsh/` | Shell configuration |
 | **Starship** | `starship.toml` | Shell prompt configuration |
+| **Lazygit** | `lazygit/` | Terminal UI for Git |
 | **Mise** | `mise/` | Tool version manager configuration |
 
 Detailed information for each component can be found in its respective directory.
@@ -29,11 +30,10 @@ The following environment variables are required for some aliases to function co
 
 ## Installation
 
-To apply these configurations to your system, run the `update.sh` script:
+### Nix (recommended)
+
+Apply configuration with Home Manager:
 
 ```bash
-./update.sh
+nix run home-manager -- switch --flake ~/dotfiles
 ```
-
-> [!WARNING]
-> The `update.sh` script will overwrite your existing `~/.config/nvim`, `~/.config/wezterm`, and `~/.zshrc`. Please ensure you have backups of your current configurations before running it.
