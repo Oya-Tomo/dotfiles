@@ -9,15 +9,6 @@ setopt print_eight_bit
 setopt auto_cd
 setopt no_beep
 setopt nolistbeep
-
-setopt share_history
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
-HISTFILE=~/.zsh_history
-ISTSIZE=1000000
-SAVEHIST=1000000
-
 setopt correct
 setopt extended_glob
 
@@ -27,28 +18,23 @@ export LS_COLORS="no=00:fi=37:di=34:ln=36:ex=32:pi=33:so=35:bd=33:cd=33:or=31:mi
 
 zstyle ':completion:*:default' menu select=1
 
-alias ls="ls --color=auto"
-alias la="ls -a --color=auto"
-alias ll="ls -l --color=auto"
-alias lla="ls -l -a --color=auto"
-alias l="ls -CF --color=auto"
-
-alias vim="nvim"
+# Terminal IDE layout
 if [ "$TERM_PROGRAM" = "ghostty" ]; then
   ide() { echo "Ghostty does not support IDE layout from script." }
 elif [ "$TERM_PROGRAM" = "WezTerm" ]; then
-  alias ide="~/.config/wezterm/alias/ide.sh"
+  alias ide="zsh ~/.config/wezterm/alias/ide.sh"
 fi
 
+# Tailscale
 alias tsen-on="sudo tailscale up --exit-node=${TS_EXIT_NODE}"
 alias tsen-off="sudo tailscale up --exit-node="
 
+# Claude shortcuts
 alias claude-local="ANTHROPIC_BASE_URL=http://${CLAUDE_LOCAL_HOST}:${CLAUDE_LOCAL_PORT} ANTHROPIC_API_KEY='llama.cpp' claude --model ${CLAUDE_LOCAL_MODEL}"
-
-eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-source "$HOME/.cargo/env"
+alias claude-glm="ANTHROPIC_BASE_URL='https://api.z.ai/api/anthropic' \
+  ANTHROPIC_API_KEY=${ZAI_TOKEN} \
+  API_TIMEOUT_MS=3000000 \
+  ANTHROPIC_DEFAULT_HAIKU_MODEL='glm-4.5-air' \
+  ANTHROPIC_DEFAULT_SONNET_MODEL='glm-5.1' \
+  ANTHROPIC_DEFAULT_OPUS_MODEL='glm-5.1' \
+  claude"
