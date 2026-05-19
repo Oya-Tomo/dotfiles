@@ -20,7 +20,7 @@
       lla = "ls -l -a --color=auto";
       l = "ls -CF --color=auto";
       vim = "nvim";
-      hms = "home-manager switch --flake ~/Programs/dotfiles";
+      hms = "home-manager switch --flake ~/dotfiles";
     };
 
     initContent = builtins.readFile ./../../../zsh/init-extra.zsh;
