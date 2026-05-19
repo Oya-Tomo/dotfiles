@@ -21,6 +21,7 @@
 
     # Languages (global defaults)
     python312
+    uv
     nodejs_24
     rustc
     cargo
