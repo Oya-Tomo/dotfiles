@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-wezterm cli split-pane --bottom --percent 30 && clear
-wezterm cli split-pane --right --percent 66 && clear
-wezterm cli split-pane --right --percent 50 && clear
+wezterm cli split-pane --top --percent 70 && clear
+wezterm cli split-pane --left --percent 34 && clear
+wezterm cli split-pane --left --percent 50 && clear
 
 wezterm cli activate-pane-direction Up && clear
