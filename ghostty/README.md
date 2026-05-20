@@ -34,7 +34,7 @@ A Ghostty terminal configuration with keybindings matching Wezterm, Hack Nerd Fo
 
 ## Appearance
 - **Font**: Hack Nerd Font Mono, size 11
-- **Theme**: Dark mode
+- **Theme**: Kanagawa Wave
 
 ## Installation
 

@@ -4,21 +4,23 @@ This is a custom Neovim configuration built with `lazy.nvim` as the plugin manag
 
 ## Features
 
-- **Plugin Management**: Powered by [lazy.nvim](https://github.com/folke/lazy.nvim).
+- **Plugin Management**: [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management.
 - **Colorscheme**: [Kanagawa](https://github.com/rebelot/kanagawa.nvim) for a beautiful, calm aesthetic.
-- **LSP (Language Server Protocol)**: Full support via [mason.nvim](https://github.com/williamboman/mason.nvim), [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim), and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
-- **Autocompletion**: Fast and intuitive completion using [blink.cmp](https://github.com/saghen/blink.cmp) with snippet support via [LuaSnip](https://github.com/L3MON4D3/LuaSnip).
-- **Fuzzy Finding**: Powerful searching with [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim).
-- **Code Formatting**: Smart formatting with [conform.nvim](https://github.com/stevearc/conform.nvim) (LSP fallback + per-language formatters).
-- **Git Integration**: Inline blame and hunk management with [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim).
+- **LSP (Language Server Protocol)**: [mason.nvim](https://github.com/williamboman/mason.nvim), [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim), and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) for LSP support.
+- **Autocompletion**: [blink.cmp](https://github.com/saghen/blink.cmp) for fast completion with [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippet support.
+- **Fuzzy Finding**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) for powerful searching.
+- **Code Formatting**: [conform.nvim](https://github.com/stevearc/conform.nvim) for smart formatting (LSP fallback + per-language formatters).
+- **Git Integration**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) for inline blame and hunk management.
 - **UI Enhancements**:
   - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) for VS Code-like tabs.
   - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) for a sleek status line.
-  - [which-key.nvim](https://github.com/folke/which-key.nvim) for helpful keybinding hints.
+  - [which-key.nvim](https://github.com/folke/which-key.nvim) for keybinding hints.
   - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) for file type icons.
   - [lspkind.nvim](https://github.com/onsails/lspkind.nvim) for LSP completion icons.
   - [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) for smooth scrolling.
   - [minimap.vim](https://github.com/wfxr/minimap.vim) for a code minimap.
+  - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) for indent guides.
+- **Snippets**: [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) for pre-built snippet collections.
 
 ## Keybindings
 

@@ -6,7 +6,7 @@ A Wezterm terminal configuration with a Kanagawa colorscheme, custom keybindings
 
 - **Colorscheme**: [Kanagawa (Gogh)](https://github.com/goatslacker/alt-terminal-themes) for a calm aesthetic.
 - **Font**: Hack Nerd Font Mono with fallback.
-- **Leader Key**: `Ctrl+l` with 1-second timeout, supporting custom events.
+- **Leader Key**: `Ctrl+l` with 1-second timeout (reserved for future use).
 
 ## Keybindings
 
@@ -23,8 +23,8 @@ A Wezterm terminal configuration with a Kanagawa colorscheme, custom keybindings
 ### Pane Operations
 | Keybinding | Action |
 | :--- | :--- |
-| `Ctrl+h` | Split horizontal (top/bottom) |
-| `Ctrl+v` | Split vertical (left/right) |
+| `Ctrl+h` | Split vertical (left/right) |
+| `Ctrl+v` | Split horizontal (top/bottom) |
 | `Ctrl+q` | Close pane (with confirmation) |
 | `Ctrl+n` | Next pane |
 | `Ctrl+b` | Previous pane |
@@ -39,10 +39,10 @@ A Wezterm terminal configuration with a Kanagawa colorscheme, custom keybindings
 | `Ctrl+Shift+c` | Copy to clipboard |
 | `Ctrl+Shift+v` | Paste from clipboard |
 
-### Events (Leader: Ctrl+l)
+### Events
 | Keybinding | Action |
 | :--- | :--- |
-| *(leader, then i)* | Emit `ide` event — create IDE layout (split into 4 panes) |
+| `Ctrl+Alt+i` | Emit `ide` event — create IDE layout (split into 4 panes) |
 
 ### Alias Scripts
 The `alias/` directory contains convenience scripts:
