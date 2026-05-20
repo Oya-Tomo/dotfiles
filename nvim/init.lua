@@ -56,6 +56,7 @@ vim.keymap.set("n", "<leader>wsh", vim.cmd.split, { desc = "Horizontal Split" })
 
 -- Setup lazy.nvim
 require("lazy").setup({
+  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
   spec = {
     -- Colorscheme
     { "rebelot/kanagawa.nvim" },

@@ -29,6 +29,9 @@ fi
 alias tsen-on="sudo tailscale up --exit-node=${TS_EXIT_NODE}"
 alias tsen-off="sudo tailscale up --exit-node="
 
+# Sync lazy.nvim lockfile to dotfiles repo
+alias nvim-lock-sync="cp ~/.local/share/nvim/lazy-lock.json ~/dotfiles/nvim/lazy-lock.json"
+
 # Claude shortcuts
 alias claude-local="ANTHROPIC_BASE_URL=http://${CLAUDE_LOCAL_HOST}:${CLAUDE_LOCAL_PORT} ANTHROPIC_API_KEY='llama.cpp' claude --model ${CLAUDE_LOCAL_MODEL}"
 alias claude-glm="ANTHROPIC_BASE_URL='https://api.z.ai/api/anthropic' \
