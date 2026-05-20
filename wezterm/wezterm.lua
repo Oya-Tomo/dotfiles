@@ -19,6 +19,10 @@ wezterm.on("ide", function(window, pane)
     wezterm.action.SplitPane({ direction = 'Right', size = { Percent = 50 } }),
     pane
   )
+  window:perform_action(
+    wezterm.action.ActivatePaneDirection('Up'),
+    pane
+  )
 end)
 
 return {
