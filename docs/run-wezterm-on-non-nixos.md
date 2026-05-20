@@ -199,13 +199,13 @@ in
 
 ### nixGL (incompatible with current nixpkgs)
 
-[nixGL](https://github.com/NixOS/nixGL) is a community tool that provides GPU acceleration on non-NixOS. However, with current `nixpkgs-unstable`, the `kernel` argument was removed from `nvidia-x11/generic.nix`, causing a build failure:
+[nixGL](https://github.com/nix-community/nixGL) is a community tool that provides GPU acceleration on non-NixOS. However, with current `nixpkgs-unstable`, the `kernel` argument was removed from `nvidia-x11/generic.nix`, causing a build failure:
 
 ```
 error: function 'anonymous lambda' called with unexpected argument 'kernel'
 ```
 
-Reported in [NixOS/nixGL#169](https://github.com/NixOS/nixGL/issues/169), unresolved at the time of writing.
+See [nix-community/nixGL#223](https://github.com/nix-community/nixGL/issues/223) and [NixOS/nixpkgs#498612](https://github.com/NixOS/nixpkgs/issues/498612).
 
 ### Adding `/usr/lib/x86_64-linux-gnu` to LD_LIBRARY_PATH (glibc conflict)
 
