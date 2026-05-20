@@ -13,6 +13,7 @@ My personal configuration files for a productive development environment.
 | **Starship** | [`starship.toml`](starship.toml) | Shell prompt configuration |
 | **Lazygit** | [`lazygit/`](lazygit/) | Terminal UI for Git |
 | **Mise** | [`mise/`](mise/) | Tool version manager configuration |
+| **Nix** | [`nix/`](nix/README.md) | Home Manager configuration (packages, programs, GPU support) |
 
 Detailed information for each component can be found in its respective directory.
 
