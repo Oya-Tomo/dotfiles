@@ -97,3 +97,13 @@ The `<leader>` key is set to `Space`.
 1. Ensure you have [Neovim](https://neovim.io/) installed.
 2. Clone this configuration into your `~/.config/nvim` directory.
 3. Open Neovim, and `lazy.nvim` will automatically install the required plugins.
+
+## Plugin Lockfile
+
+`lazy-lock.json` is tracked in the repository for reproducibility. However, when deployed via Nix Home Manager, the config directory is symlinked to the read-only Nix store, so lazy.nvim cannot write the lockfile there.
+
+To work around this, the lockfile path is set to `~/.local/share/nvim/lazy-lock.json` (writable). After updating plugins, sync the lockfile back to the repo:
+
+```bash
+nvim-lock-sync
+```
