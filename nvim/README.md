@@ -22,6 +22,28 @@ This is a custom Neovim configuration built with `lazy.nvim` as the plugin manag
   - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) for indent guides.
 - **Snippets**: [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) for pre-built snippet collections.
 
+## File Structure
+
+```
+nvim/
+├── init.lua                          -- Entry point (require("config.lazy"))
+├── lua/
+│   ├── config/
+│   │   ├── lazy.lua                  -- lazy.nvim bootstrap & setup
+│   │   ├── options.lua               -- leader, clipboard, line numbers, etc.
+│   │   ├── keymaps.lua               -- Tab/Window/Split keybindings
+│   │   └── autocmds.lua              -- FileType-specific indent settings
+│   └── plugins/                      -- auto-imported by lazy.nvim
+│       ├── colorscheme.lua           -- kanagawa.nvim
+│       ├── ui.lua                    -- which-key, bufferline, lualine, indent-blankline, minimap, devicons
+│       ├── neoscroll.lua             -- neoscroll.nvim
+│       ├── lsp.lua                   -- mason, mason-lspconfig, nvim-lspconfig, conform, lspkind
+│       ├── telescope.lua             -- telescope.nvim
+│       ├── completion.lua            -- blink.cmp, LuaSnip, friendly-snippets
+│       └── git.lua                   -- gitsigns.nvim
+└── lazy-lock.json
+```
+
 ## Keybindings
 
 The `<leader>` key is set to `Space`.
