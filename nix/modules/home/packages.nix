@@ -33,5 +33,6 @@
     # Other
     tailscale
     ffmpeg
+    typst
   ];
 }
