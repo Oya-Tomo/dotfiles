@@ -23,6 +23,7 @@
     python312
     uv
     nodejs_24
+    bun
     rustc
     cargo
 
