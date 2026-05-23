@@ -35,5 +35,6 @@
     tailscale
     ffmpeg
     typst
+    claude-code
   ];
 }
