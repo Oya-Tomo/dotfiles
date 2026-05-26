@@ -35,7 +35,7 @@ alias nvim-lock-sync="cp ~/.local/share/nvim/lazy-lock.json ~/dotfiles/nvim/lazy
 # Claude shortcuts
 alias claude-local="ANTHROPIC_BASE_URL=http://${CLAUDE_LOCAL_HOST}:${CLAUDE_LOCAL_PORT} ANTHROPIC_API_KEY='llama.cpp' claude --model ${CLAUDE_LOCAL_MODEL}"
 alias claude-glm="ANTHROPIC_BASE_URL='https://api.z.ai/api/anthropic' \
-  ANTHROPIC_API_KEY=${ZAI_TOKEN} \
+  ANTHROPIC_AUTH_TOKEN=${ZAI_TOKEN} \
   API_TIMEOUT_MS=3000000 \
   ANTHROPIC_DEFAULT_HAIKU_MODEL='glm-4.5-air' \
   ANTHROPIC_DEFAULT_SONNET_MODEL='glm-5.1' \
