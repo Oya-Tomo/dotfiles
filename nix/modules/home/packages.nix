@@ -36,5 +36,6 @@
     ffmpeg
     typst
     claude-code
+    libnotify
   ];
 }
