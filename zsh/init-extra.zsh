@@ -1,4 +1,6 @@
 # Author: Oya-Tomo
+[ -f ~/.secrets ] && source ~/.secrets
+
 autoload -Uz colors
 colors
 
