@@ -1,0 +1,46 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh issue *)"
+    ],
+    "defaultMode": "default"
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": false,
+    "discord@claude-plugins-official": true
+  },
+  "syntaxHighlightingDisabled": false,
+  "effortLevel": "high",
+  "theme": "dark",
+  "autoCompactEnabled": true,
+  "showTurnDuration": true,
+  "skipAutoPermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/oyatomo/.claude/statusline-command.sh"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send 'Claude Code' '処理が完了しました'"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send 'Claude Code' '入力または許可を待っています'"
+          }
+        ]
+      }
+    ]
+  }
+}

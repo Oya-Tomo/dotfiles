@@ -1,0 +1,7 @@
+{
+  "dmPolicy": "pairing",
+  "allowFrom": ["836873540145381399"],
+  "groups": {},
+  "pending": {},
+  "mentionPatterns": ["@mybot"]
+}

@@ -7,5 +7,6 @@
     ./wezterm.nix
     ./ghostty.nix
     ./lazygit.nix
+    ./claude.nix
   ];
 }

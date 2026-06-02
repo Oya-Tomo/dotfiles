@@ -13,6 +13,7 @@ nix/
         ├── dotfiles.nix     # Dotfile symlinks (starship, batto)
         └── programs/
             ├── default.nix  # Program module imports
+            ├── claude.nix   # Claude Code settings, statusline, Discord plugin, agent skills
             ├── direnv.nix   # [direnv](https://github.com/nix-community/nix-direnv) for per-directory env
             ├── ghostty.nix  # Ghostty terminal package + config
             ├── lazygit.nix  # Lazygit package + config

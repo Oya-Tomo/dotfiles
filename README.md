@@ -13,6 +13,8 @@ My personal configuration files for a productive development environment.
 | **Starship** | [`starship.toml`](starship.toml) | Shell prompt configuration |
 | **Lazygit** | [`lazygit/`](lazygit/) | Terminal UI for Git |
 | **Mise** | [`mise/`](mise/) | Tool version manager configuration |
+| **Claude Code** | [`claude/`](claude/) | Settings, statusline, Discord plugin config |
+| **Agents** | [`agents/`](agents/) | Shared AI agent skills (Claude Code, Copilot, etc.) |
 | **Nix** | [`nix/`](nix/README.md) | Home Manager configuration (packages, programs, GPU support) |
 
 Detailed information for each component can be found in its respective directory.
@@ -31,6 +33,9 @@ The following environment variables are required for some aliases to function co
 
 ### Claude GLM
 - `ZAI_TOKEN`: API token for the `claude-glm` command (GLM models via z.ai).
+
+### Discord Plugin
+- `DISCORD_BOT_TOKEN`: Bot token for the Claude Code Discord integration. Place in `~/.claude/channels/discord/.env` (see `claude/channels/discord/.env.example`).
 
 ## Installation
 
