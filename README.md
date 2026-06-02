@@ -37,6 +37,18 @@ The following environment variables are required for some aliases to function co
 ### Discord Plugin
 - `DISCORD_BOT_TOKEN`: Bot token for the Claude Code Discord integration. Place in `~/.claude/channels/discord/.env` (see `claude/channels/discord/.env.example`).
 
+## Secrets
+
+Private environment variables are loaded from `~/.secrets` (not tracked by git). Create it manually:
+
+```bash
+export ZAI_TOKEN=your_token_here
+export TS_EXIT_NODE=your_exit_node_here
+export CLAUDE_LOCAL_HOST=127.0.0.1
+export CLAUDE_LOCAL_PORT=8080
+export CLAUDE_LOCAL_MODEL=model-name
+```
+
 ## Installation
 
 ### Nix (recommended)
