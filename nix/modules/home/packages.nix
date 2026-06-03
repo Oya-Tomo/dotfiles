@@ -37,5 +37,6 @@
     typst
     claude-code
     libnotify
+    xdotool
   ];
 }
