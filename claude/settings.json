@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /home/oyatomo/.claude/claude-notify.sh 'Claude Code' '処理が完了しました'"
+            "command": "bash /home/oyatomo/.claude/claude-notify.sh 'Claude Code' '処理が完了しました' 5000"
           }
         ]
       }

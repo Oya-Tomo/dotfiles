@@ -13,15 +13,17 @@ STATE_FILE="/tmp/claude-notify-${SESSION_ID}.txt"
 send() {
     TITLE="${1:-Claude Code}"
     BODY="${2}"
+    TIMEOUT="${3:-}"
 
-    if [ -f "$STATE_FILE" ] && [ -s "$STATE_FILE" ]; then
-        OLD_ID=$(cat "$STATE_FILE")
-        NEW_ID=$(notify-send -r "$OLD_ID" -p "$TITLE" "$BODY" 2>/dev/null)
-    else
-        NEW_ID=$(notify-send -p "$TITLE" "$BODY" 2>/dev/null)
-    fi
+    OPTS="-p"
+    [ -f "$STATE_FILE" ] && [ -s "$STATE_FILE" ] && OPTS="$OPTS -r $(cat "$STATE_FILE")"
+    [ -n "$TIMEOUT" ] && OPTS="$OPTS -t $TIMEOUT"
 
-    if [ -n "$NEW_ID" ]; then
+    NEW_ID=$(notify-send $OPTS "$TITLE" "$BODY" 2>/dev/null)
+
+    if [ -n "$TIMEOUT" ]; then
+        rm -f "$STATE_FILE"
+    elif [ -n "$NEW_ID" ]; then
         echo "$NEW_ID" > "$STATE_FILE"
     fi
 }
