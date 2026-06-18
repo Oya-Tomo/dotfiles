@@ -39,5 +39,6 @@
     libnotify
     xclip
     xdotool
+    openscad
   ];
 }
