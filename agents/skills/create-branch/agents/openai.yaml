@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Branch"
+  short_description: "Create and verify issue-linked GitHub branches"
+  default_prompt: "Use $create-branch to start an issue-linked working branch."

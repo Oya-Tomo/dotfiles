@@ -1,0 +1,4 @@
+interface:
+  display_name: "Work on Issue"
+  short_description: "Implement GitHub issues with scoped validation"
+  default_prompt: "Use $work-on-issue to implement this GitHub issue safely."

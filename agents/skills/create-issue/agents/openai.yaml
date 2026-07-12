@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Issue"
+  short_description: "Create precise, implementation-ready GitHub issues"
+  default_prompt: "Use $create-issue to turn this request into a scoped GitHub issue."

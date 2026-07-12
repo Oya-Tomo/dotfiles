@@ -13,7 +13,7 @@ nix/
         ├── dotfiles.nix     # Dotfile symlinks (starship, batto)
         └── programs/
             ├── default.nix  # Program module imports
-            ├── claude.nix   # Claude Code settings, statusline, Discord plugin, agent skills
+            ├── claude.nix   # Claude Code/Codex settings and shared agent skills
             ├── direnv.nix   # [direnv](https://github.com/nix-community/nix-direnv) for per-directory env
             ├── ghostty.nix  # Ghostty terminal package + config
             ├── lazygit.nix  # Lazygit package + config
@@ -26,6 +26,20 @@ nix/
 ## GPU Support (non-NixOS)
 
 On non-NixOS systems with NVIDIA hybrid graphics, GPU drivers are configured via `targets.genericLinux.gpu` in `default.nix`. See [Running WezTerm on non-NixOS](../docs/run-wezterm-on-non-nixos.md) for details.
+
+## Shared Agent Skills
+
+Keep reusable skills under `agents/skills/<skill-name>` as the single source of truth. Home Manager publishes that source to:
+
+- `~/.agents/skills` for shared agent discovery.
+- `~/.claude/skills` for Claude Code.
+- `~/.codex/skills/<skill-name>` for Codex, one skill at a time so Codex's managed `~/.codex/skills/.system` directory remains intact.
+
+After adding or updating a skill, apply the links with:
+
+```bash
+nix run home-manager -- switch --flake ~/dotfiles
+```
 
 ## Adding a New Program
 

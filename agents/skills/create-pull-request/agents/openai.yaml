@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Pull Request"
+  short_description: "Validate and publish a well-scoped GitHub pull request"
+  default_prompt: "Use $create-pull-request to validate and open a pull request."
