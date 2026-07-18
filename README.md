@@ -54,10 +54,11 @@ export CLAUDE_LOCAL_MODEL=model-name
 ### Nix (recommended)
 
 > [!IMPORTANT]
-> Do not apply the flake before completing the system-wide Nix configuration.
-> This repository requires the `nix-command` and `flakes` experimental features
-> and the Numtide binary cache. Non-NixOS systems with NVIDIA GPUs also require a
-> separate system-level GPU setup step after Home Manager is applied.
+> Do not apply the flake before completing the Nix setup. This repository
+> requires the `nix-command` and `flakes` experimental features in the user Nix
+> configuration and the Numtide binary cache in the system-wide daemon
+> configuration. Non-NixOS systems with NVIDIA GPUs also require a separate
+> system-level GPU setup step after Home Manager is applied.
 
 Follow the complete [Nix setup instructions](nix/README.md), including the Nix
 daemon restart and NVIDIA driver setup when applicable.

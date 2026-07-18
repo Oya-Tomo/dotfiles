@@ -25,23 +25,46 @@ nix/
 
 ## Initial Setup
 
-This repository assumes a multi-user Nix installation with `nix-daemon`. Finish
-the following system-wide setup before applying the Home Manager configuration.
+This repository assumes a multi-user Nix installation with `nix-daemon`.
+Complete these steps in order before applying the Home Manager configuration.
 
-### 1. Enable the Nix CLI and flakes
+### 1. Enable the Nix CLI and flakes for the user
 
-Add the following settings to `/etc/nix/nix.conf`. Preserve any existing values
-on these settings when adding the required entries.
+Create the per-user Nix configuration directory, then open its configuration
+file in an editor:
+
+```bash
+mkdir -p ~/.config/nix
+${EDITOR:-vi} ~/.config/nix/nix.conf
+```
+
+Add the following setting to `~/.config/nix/nix.conf`. If the file already has
+an `experimental-features` setting, add the missing feature names to that line
+instead of creating a duplicate setting.
 
 ```ini
 experimental-features = nix-command flakes
-extra-substituters = https://cache.numtide.com
-extra-trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
 ```
 
 The `nix-command` and `flakes` features are still marked experimental by Nix and
 are required by commands such as `nix run`, `nix store`, and `nix flake` used in
 this repository.
+
+Confirm that the user configuration is loaded:
+
+```bash
+nix config show | rg '^experimental-features = .*nix-command.*flakes|^experimental-features = .*flakes.*nix-command'
+```
+
+### 2. Configure the system-wide Numtide cache
+
+Edit `/etc/nix/nix.conf` as root and add the following settings. Preserve any
+existing values when adding the new substituter and public key.
+
+```ini
+extra-substituters = https://cache.numtide.com
+extra-trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+```
 
 The Numtide cache is also required because this configuration installs Claude
 Code and Codex from `numtide/llm-agents.nix`. Without it, Nix may build Codex
@@ -51,7 +74,7 @@ Do not work around the cache requirement by adding the regular user to
 `trusted-users`. This flake relies on system-wide daemon configuration instead
 of granting the user daemon-level trust.
 
-### 2. Restart the Nix daemon
+### 3. Restart the Nix daemon
 
 On a systemd-based multi-user Nix installation, restart the daemon so it reads
 the updated `nix.conf`:
@@ -65,19 +88,18 @@ systemd unit definitions, not Nix configuration. If the installation does not
 provide `nix-daemon.service`, reboot or use the restart procedure provided by
 that Nix installation.
 
-### 3. Verify the daemon configuration
+### 4. Verify the daemon configuration
 
 Run these commands as the regular user:
 
 ```bash
-nix config show | rg '^experimental-features = .*nix-command.*flakes|^experimental-features = .*flakes.*nix-command'
 nix config show | rg '^substituters = .*https://cache.numtide.com'
 nix config show | rg '^trusted-public-keys = .*niks3.numtide.com-1:'
 ```
 
-All three commands must print a matching line before continuing.
+Both commands must print a matching line before continuing.
 
-### 4. Apply the Home Manager configuration
+### 5. Apply the Home Manager configuration
 
 ```bash
 nix run home-manager -- switch --flake ~/dotfiles
