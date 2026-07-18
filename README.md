@@ -54,10 +54,10 @@ export CLAUDE_LOCAL_MODEL=model-name
 ### Nix (recommended)
 
 > [!IMPORTANT]
-> This configuration assumes that the Numtide binary cache has already been configured system-wide. Complete the [required cache setup](nix/README.md#required-system-wide-numtide-cache) before applying the flake. Do not run Home Manager first: without the cache, Nix may build Codex locally.
+> Do not apply the flake before completing the system-wide Nix configuration.
+> This repository requires the `nix-command` and `flakes` experimental features
+> and the Numtide binary cache. Non-NixOS systems with NVIDIA GPUs also require a
+> separate system-level GPU setup step after Home Manager is applied.
 
-Apply configuration with Home Manager:
-
-```bash
-nix run home-manager -- switch --flake ~/dotfiles
-```
+Follow the complete [Nix setup instructions](nix/README.md), including the Nix
+daemon restart and NVIDIA driver setup when applicable.

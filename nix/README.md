@@ -23,9 +23,167 @@ nix/
             └── zsh.nix      # Zsh shell config (history, aliases, init-extra.zsh)
 ```
 
-## GPU Support (non-NixOS)
+## Initial Setup
 
-On non-NixOS systems with NVIDIA hybrid graphics, GPU drivers are configured via `targets.genericLinux.gpu` in `default.nix`. See [Running WezTerm on non-NixOS](../docs/run-wezterm-on-non-nixos.md) for details.
+This repository assumes a multi-user Nix installation with `nix-daemon`. Finish
+the following system-wide setup before applying the Home Manager configuration.
+
+### 1. Enable the Nix CLI and flakes
+
+Add the following settings to `/etc/nix/nix.conf`. Preserve any existing values
+on these settings when adding the required entries.
+
+```ini
+experimental-features = nix-command flakes
+extra-substituters = https://cache.numtide.com
+extra-trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+```
+
+The `nix-command` and `flakes` features are still marked experimental by Nix and
+are required by commands such as `nix run`, `nix store`, and `nix flake` used in
+this repository.
+
+The Numtide cache is also required because this configuration installs Claude
+Code and Codex from `numtide/llm-agents.nix`. Without it, Nix may build Codex
+locally.
+
+Do not work around the cache requirement by adding the regular user to
+`trusted-users`. This flake relies on system-wide daemon configuration instead
+of granting the user daemon-level trust.
+
+### 2. Restart the Nix daemon
+
+On a systemd-based multi-user Nix installation, restart the daemon so it reads
+the updated `nix.conf`:
+
+```bash
+sudo systemctl restart nix-daemon.service
+```
+
+`systemctl daemon-reload` is not needed when only `nix.conf` changes; it reloads
+systemd unit definitions, not Nix configuration. If the installation does not
+provide `nix-daemon.service`, reboot or use the restart procedure provided by
+that Nix installation.
+
+### 3. Verify the daemon configuration
+
+Run these commands as the regular user:
+
+```bash
+nix config show | rg '^experimental-features = .*nix-command.*flakes|^experimental-features = .*flakes.*nix-command'
+nix config show | rg '^substituters = .*https://cache.numtide.com'
+nix config show | rg '^trusted-public-keys = .*niks3.numtide.com-1:'
+```
+
+All three commands must print a matching line before continuing.
+
+### 4. Apply the Home Manager configuration
+
+```bash
+nix run home-manager -- switch --flake ~/dotfiles
+```
+
+On a non-NixOS system with an NVIDIA GPU, this command alone does not finish the
+GPU setup. Complete the next section and run the `sudo` command printed by Home
+Manager.
+
+## NVIDIA GPU Setup (non-NixOS)
+
+The proprietary NVIDIA libraries built by Home Manager must exactly match the
+driver installed on the host. Repeat this procedure after every host NVIDIA
+driver update.
+
+### 1. Read the installed driver version
+
+```bash
+nvidia-smi --query-gpu=driver_version --format=csv,noheader
+```
+
+For example:
+
+```text
+595.71.05
+```
+
+If multiple GPUs produce multiple lines, they should normally report the same
+driver version.
+
+### 2. Prefetch the matching NVIDIA installer
+
+Set `VERSION` to the exact value reported by `nvidia-smi`:
+
+```bash
+VERSION="595.71.05"
+URL="https://download.nvidia.com/XFree86/Linux-x86_64/${VERSION}/NVIDIA-Linux-x86_64-${VERSION}.run"
+
+nix store prefetch-file --json "$URL"
+```
+
+The command downloads the installer into the Nix store and returns JSON like:
+
+```json
+{
+  "hash": "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=",
+  "storePath": "/nix/store/...-NVIDIA-Linux-x86_64-595.71.05.run"
+}
+```
+
+Copy the complete `sha256-...` value from `hash`. To print only that value:
+
+```bash
+nix store prefetch-file --json "$URL" | jq -r '.hash'
+```
+
+For an ARM system, use NVIDIA's `Linux-aarch64` path instead of
+`Linux-x86_64`.
+
+### 3. Update `default.nix`
+
+Update both values in `nix/modules/home/default.nix`:
+
+```nix
+targets.genericLinux.gpu = {
+  enable = true;
+  nvidia = {
+    enable = true;
+    version = "595.71.05";
+    sha256 = "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=";
+  };
+};
+```
+
+### 4. Apply Home Manager and run the GPU setup command
+
+```bash
+nix run home-manager -- switch --flake ~/dotfiles
+```
+
+Home Manager compares the new GPU environment with `/run/opengl-driver`. When
+setup or an update is required, it prints a command similar to:
+
+```text
+GPU drivers require an update, run
+  sudo /nix/store/HASH-non-nixos-gpu/bin/non-nixos-gpu-setup
+```
+
+Run the exact command printed in the current activation output:
+
+```bash
+sudo /nix/store/HASH-non-nixos-gpu/bin/non-nixos-gpu-setup
+```
+
+Do not reuse the command from an older driver version because its Nix store path
+points to the old GPU environment. The setup script installs
+`/etc/tmpfiles.d/non-nixos-gpu.conf` and creates `/run/opengl-driver`.
+
+### 5. Verify the GPU environment
+
+```bash
+readlink -f /run/opengl-driver
+ls /run/opengl-driver/share/glvnd/egl_vendor.d/
+```
+
+Re-running Home Manager should no longer print the GPU setup warning.
 
 ## Shared Agent Instructions and Skills
 
@@ -45,27 +203,6 @@ After adding or updating a skill, apply the links with:
 ```bash
 nix run home-manager -- switch --flake ~/dotfiles
 ```
-
-## Required System-wide Numtide Cache
-
-> [!IMPORTANT]
-> This configuration installs Claude Code and Codex from `numtide/llm-agents.nix` and assumes the Numtide binary cache is configured system-wide. This is a required prerequisite, not an optional optimization. Configure it before evaluating, building, or applying this flake; otherwise Nix may build Codex locally.
-
-On a multi-user Nix installation, add the following settings to `/etc/nix/nix.conf` as root:
-
-```ini
-extra-substituters = https://cache.numtide.com
-extra-trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
-```
-
-Restart `nix-daemon` (or reboot) after changing the system configuration. Then verify that both entries are effective:
-
-```bash
-nix config show | rg '^substituters = .*https://cache.numtide.com'
-nix config show | rg '^trusted-public-keys = .*niks3.numtide.com-1:'
-```
-
-Do not work around this requirement by adding the regular user to `trusted-users`. The flake intentionally relies on the system configuration instead of granting the user daemon-level trust.
 
 ## Adding a New Program
 
