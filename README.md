@@ -7,6 +7,7 @@ My personal configuration files for a productive development environment.
 | Component | Configuration | Description |
 | :--- | :--- | :--- |
 | **Neovim** | [`nvim/`](nvim/README.md) | LSP-driven editor with blink.cmp, Telescope, gitsigns, conform.nvim and more |
+| **Visual Studio Code** | [`vscode/`](vscode/README.md) | Nix-managed editor, extensions, formatters, and writable global settings |
 | **WezTerm** | [`wezterm/`](wezterm/README.md) | Terminal with Kanagawa colorscheme, custom pane/tab shortcuts, and IDE layout support |
 | **Ghostty** | [`ghostty/`](ghostty/README.md) | Terminal with WezTerm-compatible keybindings, Kanagawa theme, and Hack Nerd Font |
 | **Zsh** | [`zsh/`](zsh/README.md) | Host-installed shell with Home Manager-managed user configuration |
