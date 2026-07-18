@@ -1,11 +1,18 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    nixfmt
+    rustfmt
+  ];
+
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
 
     profiles.default.extensions = with pkgs.vscode-extensions; [
+      charliermarsh.ruff
+      esbenp.prettier-vscode
       jnoortheen.nix-ide
       ms-python.debugpy
       ms-python.python
@@ -31,4 +38,6 @@
       }
     ];
   };
+
+  xdg.configFile."Code/User/settings.json".source = ./../../../../vscode/settings.json;
 }
