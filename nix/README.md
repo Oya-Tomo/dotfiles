@@ -93,51 +93,27 @@ The proprietary NVIDIA libraries built by Home Manager must exactly match the
 driver installed on the host. Repeat this procedure after every host NVIDIA
 driver update.
 
-### 1. Read the installed driver version
+### 1. Get the installed version and matching hash
+
+Run this command as a single line. It reads the installed version with
+`nvidia-smi`, prefetches the matching installer into the Nix store, and prints
+both values in a form that can be copied into `default.nix`:
 
 ```bash
-nvidia-smi --query-gpu=driver_version --format=csv,noheader
+v=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -1 | xargs); h=$(nix store prefetch-file --json "https://download.nvidia.com/XFree86/Linux-x86_64/$v/NVIDIA-Linux-x86_64-$v.run" | jq -r .hash); printf 'version = "%s";\nsha256 = "%s";\n' "$v" "$h"
 ```
 
-For example:
+Example output:
 
-```text
-595.71.05
+```nix
+version = "595.71.05";
+sha256 = "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=";
 ```
 
-If multiple GPUs produce multiple lines, they should normally report the same
-driver version.
+The command targets `x86_64-linux`. On an ARM system, replace both occurrences
+of `Linux-x86_64` with `Linux-aarch64`.
 
-### 2. Prefetch the matching NVIDIA installer
-
-Set `VERSION` to the exact value reported by `nvidia-smi`:
-
-```bash
-VERSION="595.71.05"
-URL="https://download.nvidia.com/XFree86/Linux-x86_64/${VERSION}/NVIDIA-Linux-x86_64-${VERSION}.run"
-
-nix store prefetch-file --json "$URL"
-```
-
-The command downloads the installer into the Nix store and returns JSON like:
-
-```json
-{
-  "hash": "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=",
-  "storePath": "/nix/store/...-NVIDIA-Linux-x86_64-595.71.05.run"
-}
-```
-
-Copy the complete `sha256-...` value from `hash`. To print only that value:
-
-```bash
-nix store prefetch-file --json "$URL" | jq -r '.hash'
-```
-
-For an ARM system, use NVIDIA's `Linux-aarch64` path instead of
-`Linux-x86_64`.
-
-### 3. Update `default.nix`
+### 2. Update `default.nix`
 
 Update both values in `nix/modules/home/default.nix`:
 
@@ -152,7 +128,7 @@ targets.genericLinux.gpu = {
 };
 ```
 
-### 4. Apply Home Manager and run the GPU setup command
+### 3. Apply Home Manager and run the GPU setup command
 
 ```bash
 nix run home-manager -- switch --flake ~/dotfiles
@@ -176,7 +152,7 @@ Do not reuse the command from an older driver version because its Nix store path
 points to the old GPU environment. The setup script installs
 `/etc/tmpfiles.d/non-nixos-gpu.conf` and creates `/run/opengl-driver`.
 
-### 5. Verify the GPU environment
+### 4. Verify the GPU environment
 
 ```bash
 readlink -f /run/opengl-driver
