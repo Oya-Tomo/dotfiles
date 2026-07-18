@@ -39,6 +39,9 @@
     xclip
     xdotool
     openscad
+
+    # Fonts
+    nerd-fonts.hack
   ]) ++ [
     llmAgentPkgs.claude-code
     llmAgentPkgs.codex
