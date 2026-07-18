@@ -202,7 +202,7 @@ Re-running Home Manager should no longer print the GPU setup warning.
 
 ## Shared Agent Instructions and Skills
 
-Keep global agent instructions in `agents/.rules` as the single source of truth. Home Manager publishes it to:
+Keep global agent instructions in `agents/shared-instructions.md` as the single source of truth. Home Manager publishes it to:
 
 - `~/.claude/CLAUDE.md` for Claude Code.
 - `~/.codex/AGENTS.md` for Codex.
