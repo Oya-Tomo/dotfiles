@@ -14,7 +14,7 @@ My personal configuration files for a productive development environment.
 | **Lazygit** | [`lazygit/`](lazygit/) | Terminal UI for Git |
 | **Mise** | [`mise/`](mise/) | Tool version manager configuration |
 | **Claude Code** | [`claude/`](claude/) | Settings, statusline, Discord plugin config |
-| **Agents** | [`agents/`](agents/) | Shared AI agent skills (Claude Code, Copilot, etc.) |
+| **Agents** | [`agents/`](agents/) | Shared AI agent instructions and skills |
 | **Nix** | [`nix/`](nix/README.md) | Home Manager configuration (packages, programs, GPU support) |
 
 Detailed information for each component can be found in its respective directory.
@@ -52,6 +52,9 @@ export CLAUDE_LOCAL_MODEL=model-name
 ## Installation
 
 ### Nix (recommended)
+
+> [!IMPORTANT]
+> This configuration assumes that the Numtide binary cache has already been configured system-wide. Complete the [required cache setup](nix/README.md#required-system-wide-numtide-cache) before applying the flake. Do not run Home Manager first: without the cache, Nix may build Codex locally.
 
 Apply configuration with Home Manager:
 

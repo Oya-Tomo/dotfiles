@@ -1,7 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, llmAgentPkgs, ... }:
 
 {
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     # CLI tools
     ripgrep
     fd
@@ -35,10 +35,12 @@
     tailscale
     ffmpeg
     typst
-    claude-code
     libnotify
     xclip
     xdotool
     openscad
+  ]) ++ [
+    llmAgentPkgs.claude-code
+    llmAgentPkgs.codex
   ];
 }

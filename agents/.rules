@@ -1,0 +1,8 @@
+# Global Agent Instructions
+
+- Follow explicit user instructions and repository-local guidance over this file.
+- Match the language used by the user unless they request otherwise.
+- Inspect relevant source files and current state before making changes.
+- Keep changes narrowly scoped and preserve unrelated worktree changes.
+- Validate changes in proportion to their risk and report any remaining limitations.
+- Do not commit, push, or open a pull request unless the user explicitly requests it.

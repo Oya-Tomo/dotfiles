@@ -27,7 +27,12 @@ nix/
 
 On non-NixOS systems with NVIDIA hybrid graphics, GPU drivers are configured via `targets.genericLinux.gpu` in `default.nix`. See [Running WezTerm on non-NixOS](../docs/run-wezterm-on-non-nixos.md) for details.
 
-## Shared Agent Skills
+## Shared Agent Instructions and Skills
+
+Keep global agent instructions in `agents/.rules` as the single source of truth. Home Manager publishes it to:
+
+- `~/.claude/CLAUDE.md` for Claude Code.
+- `~/.codex/AGENTS.md` for Codex.
 
 Keep reusable skills under `agents/skills/<skill-name>` as the single source of truth. Home Manager publishes that source to:
 
@@ -40,6 +45,27 @@ After adding or updating a skill, apply the links with:
 ```bash
 nix run home-manager -- switch --flake ~/dotfiles
 ```
+
+## Required System-wide Numtide Cache
+
+> [!IMPORTANT]
+> This configuration installs Claude Code and Codex from `numtide/llm-agents.nix` and assumes the Numtide binary cache is configured system-wide. This is a required prerequisite, not an optional optimization. Configure it before evaluating, building, or applying this flake; otherwise Nix may build Codex locally.
+
+On a multi-user Nix installation, add the following settings to `/etc/nix/nix.conf` as root:
+
+```ini
+extra-substituters = https://cache.numtide.com
+extra-trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+```
+
+Restart `nix-daemon` (or reboot) after changing the system configuration. Then verify that both entries are effective:
+
+```bash
+nix config show | rg '^substituters = .*https://cache.numtide.com'
+nix config show | rg '^trusted-public-keys = .*niks3.numtide.com-1:'
+```
+
+Do not work around this requirement by adding the regular user to `trusted-users`. The flake intentionally relies on the system configuration instead of granting the user daemon-level trust.
 
 ## Adding a New Program
 
