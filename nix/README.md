@@ -115,6 +115,10 @@ The proprietary NVIDIA libraries built by Home Manager must exactly match the
 driver installed on the host. Repeat this procedure after every host NVIDIA
 driver update.
 
+For the upstream behavior and additional options, see Home Manager's official
+[GPU on non-NixOS systems](https://github.com/nix-community/home-manager/blob/master/docs/manual/usage/gpu-non-nixos.md)
+guide.
+
 ### 1. Get the installed version and matching hash
 
 Run this command as a single line. It reads the installed version with
