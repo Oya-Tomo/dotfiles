@@ -20,7 +20,7 @@ nix/
             ├── neovim.nix   # Neovim package + config
             ├── starship.nix # Starship prompt package
             ├── wezterm.nix  # WezTerm terminal package + config
-            └── zsh.nix      # Zsh shell config (history, aliases, init-extra.zsh)
+            └── zsh.nix      # Deploys config for the host-installed Zsh
 ```
 
 ## Initial Setup
@@ -99,7 +99,19 @@ nix config show | rg '^trusted-public-keys = .*niks3.numtide.com-1:'
 
 Both commands must print a matching line before continuing.
 
-### 5. Apply the Home Manager configuration
+### 5. Install the login shell
+
+On Ubuntu or Debian, install zsh with the host package manager. A system
+installation registers zsh in `/etc/shells`, allowing it to be selected as the
+login shell while Home Manager manages only its user configuration.
+
+```bash
+sudo apt update
+sudo apt install zsh
+chsh -s /usr/bin/zsh
+```
+
+### 6. Apply the Home Manager configuration
 
 ```bash
 nix run home-manager -- switch --flake ~/dotfiles

@@ -9,7 +9,7 @@ My personal configuration files for a productive development environment.
 | **Neovim** | [`nvim/`](nvim/README.md) | LSP-driven editor with blink.cmp, Telescope, gitsigns, conform.nvim and more |
 | **WezTerm** | [`wezterm/`](wezterm/README.md) | Terminal with Kanagawa colorscheme, custom pane/tab shortcuts, and IDE layout support |
 | **Ghostty** | [`ghostty/`](ghostty/README.md) | Terminal with WezTerm-compatible keybindings, Kanagawa theme, and Hack Nerd Font |
-| **Zsh** | [`zsh/`](zsh/) | Shell configuration |
+| **Zsh** | [`zsh/`](zsh/README.md) | Host-installed shell with Home Manager-managed user configuration |
 | **Starship** | [`starship.toml`](starship.toml) | Shell prompt configuration |
 | **Lazygit** | [`lazygit/`](lazygit/) | Terminal UI for Git |
 | **Mise** | [`mise/`](mise/) | Tool version manager configuration |

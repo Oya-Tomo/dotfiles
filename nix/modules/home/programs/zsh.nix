@@ -1,28 +1,19 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 
 {
-  programs.zsh = {
-    enable = true;
+  # The host package manager installs zsh itself. Home Manager only deploys
+  # the user configuration and keeps all zsh-specific files under zsh/.
+  programs.zsh.enable = false;
 
-    history = {
-      path = "$HOME/.zsh_history";
-      size = 1000000;
-      save = 1000000;
-      ignoreDups = true;
-      ignoreSpace = true;
-      share = true;
-    };
+  programs.starship.enableZshIntegration = false;
+  programs.direnv.enableZshIntegration = false;
+  programs.wezterm.enableZshIntegration = false;
+  programs.lazygit.enableZshIntegration = false;
 
-    shellAliases = {
-      ls = "ls --color=auto";
-      la = "ls -a --color=auto";
-      ll = "ls -l --color=auto";
-      lla = "ls -l -a --color=auto";
-      l = "ls -CF --color=auto";
-      vim = "nvim";
-      hms = "nix run home-manager -- switch --flake ~/dotfiles";
-    };
+  home.file.".zshenv".source = ./../../../../zsh/.zshenv;
 
-    initContent = builtins.readFile ./../../../../zsh/init-extra.zsh;
+  xdg.configFile = {
+    "zsh/.zprofile".source = ./../../../../zsh/.zprofile;
+    "zsh/.zshrc".source = ./../../../../zsh/.zshrc;
   };
 }
