@@ -35,8 +35,8 @@ In the main home-manager module (e.g. `default.nix`):
     ./dotfiles.nix
   ];
 
-  home.username = "oyatomo";
-  home.homeDirectory = "/home/oyatomo";
+  home.username = "your-username";
+  home.homeDirectory = "/home/your-username";
   home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;

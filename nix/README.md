@@ -6,6 +6,7 @@ Home Manager configuration using Nix flakes. Manages packages, program settings,
 
 ```
 nix/
+├── user.nix                 # Target Linux user and home directory
 └── modules/
     └── home/
         ├── default.nix      # Main home-manager entry point
@@ -112,7 +113,27 @@ sudo apt install zsh
 chsh -s /usr/bin/zsh
 ```
 
-### 6. Apply the Home Manager configuration
+### 6. Configure the target user
+
+Before the first activation, edit `nix/user.nix` and set `username` to the
+Linux account that will use this configuration:
+
+```nix
+let
+  username = "your-username";
+in
+{
+  inherit username;
+  homeDirectory = "/home/${username}";
+}
+```
+
+`homeDirectory` is derived from the username for a conventional Linux home
+directory. Set it explicitly if the account uses a different location. The
+same values are used for the flake's Home Manager configuration name and the
+Home Manager `home` options, so they cannot drift apart.
+
+### 7. Apply the Home Manager configuration
 
 ```bash
 nix run home-manager -- switch --flake ~/dotfiles

@@ -17,7 +17,7 @@
   "skipAutoPermissionPrompt": true,
   "statusLine": {
     "type": "command",
-    "command": "bash /home/oyatomo/.claude/statusline-command.sh"
+    "command": "bash \"$HOME/.claude/statusline-command.sh\""
   },
   "hooks": {
     "Stop": [
@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /home/oyatomo/.claude/claude-notify.sh 'Claude Code' '処理が完了しました' 5000"
+            "command": "bash \"$HOME/.claude/claude-notify.sh\" 'Claude Code' '処理が完了しました' 5000"
           }
         ]
       }
@@ -37,7 +37,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /home/oyatomo/.claude/claude-notify.sh 'Claude Code' '入力または許可を待っています'"
+            "command": "bash \"$HOME/.claude/claude-notify.sh\" 'Claude Code' '入力または許可を待っています'"
           }
         ]
       }
@@ -48,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /home/oyatomo/.claude/claude-notify.sh --dismiss"
+            "command": "bash \"$HOME/.claude/claude-notify.sh\" --dismiss"
           }
         ]
       }

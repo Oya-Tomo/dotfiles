@@ -14,10 +14,12 @@
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    userConfig = import ./nix/user.nix;
   in {
-    homeConfigurations."oyatomo" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.${userConfig.username} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
+        inherit userConfig;
         llmAgentPkgs = llm-agents.packages.${system};
       };
       modules = [ ./nix/modules/home ];

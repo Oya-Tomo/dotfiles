@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, userConfig, ... }:
 
 {
   imports = [
@@ -12,9 +12,10 @@
     nvidia.acceptLicense = true;
   };
 
-  home.username = "oyatomo";
-  home.homeDirectory = "/home/oyatomo";
-  home.stateVersion = "25.05";
+  home = {
+    inherit (userConfig) username homeDirectory;
+    stateVersion = "25.05";
+  };
 
   programs.home-manager.enable = true;
 
