@@ -21,6 +21,7 @@
       ms-vsliveshare.vsliveshare
       myriad-dreamin.tinymist
       rust-lang.rust-analyzer
+      tomoki1207.pdf
       yzane.markdown-pdf
       yzhang.markdown-all-in-one
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
