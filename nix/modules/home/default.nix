@@ -15,6 +15,10 @@
   home = {
     inherit (userConfig) username homeDirectory;
     stateVersion = "25.05";
+    sessionVariables = {
+      GTK_IM_MODULE = "xim";
+      XMODIFIERS = "@im=fcitx";
+    };
   };
 
   programs.home-manager.enable = true;
