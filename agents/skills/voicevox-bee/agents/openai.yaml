@@ -1,4 +1,4 @@
 interface:
   display_name: "VOICEVOX Bee"
-  short_description: "猫使ビィが作業の進捗・質問・完了を短い音声で知らせる"
+  short_description: "猫使ビィが作業の進捗・質問・完了を自然な音声で知らせる"
   default_prompt: "$voicevox-bee を使って、このタスクの進捗と結果を猫使ビィの声で知らせて。"

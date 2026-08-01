@@ -139,10 +139,6 @@ validate_sentence() {
   if [[ "$text" =~ '[。！？!?][[:space:]]*[^。！？!?[:space:]]' ]]; then
     fail "一つの引数に複数の文を入れず、文ごとにスタイルとの組へ分けてね。" 64
   fi
-
-  if [[ "$style_key" == "strong" && "$text" != "タスクに成功しました！" ]]; then
-    fail "strongは「タスクに成功しました！」だけに使ってね。" 64
-  fi
 }
 
 cleanup() {
