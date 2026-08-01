@@ -166,8 +166,8 @@ v=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -1 | xarg
 Example output:
 
 ```nix
-version = "595.71.05";
-sha256 = "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=";
+version = "595.84";
+sha256 = "sha256-mcQE5SExvye8ptoCaNzOPr7cenOrF0BxqZXPGmxeugY=";
 ```
 
 The command targets `x86_64-linux`. On an ARM system, replace both occurrences
@@ -182,8 +182,8 @@ targets.genericLinux.gpu = {
   enable = true;
   nvidia = {
     enable = true;
-    version = "595.71.05";
-    sha256 = "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=";
+    version = "595.84";
+    sha256 = "sha256-mcQE5SExvye8ptoCaNzOPr7cenOrF0BxqZXPGmxeugY=";
   };
 };
 ```
