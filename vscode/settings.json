@@ -17,6 +17,9 @@
     "editor.tabSize": 2
   },
   "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.ruff": "explicit"
+    },
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.insertSpaces": true,
     "editor.tabSize": 4
