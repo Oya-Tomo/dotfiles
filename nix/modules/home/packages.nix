@@ -31,6 +31,9 @@
     gcc
     tree-sitter
 
+    # Kubernetes
+    kubectl
+
     # Other
     tailscale
     ffmpeg
