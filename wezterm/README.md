@@ -6,6 +6,7 @@ A Wezterm terminal configuration with a Kanagawa colorscheme, custom keybindings
 
 - **Colorscheme**: [Kanagawa (Gogh)](https://github.com/goatslacker/alt-terminal-themes) for a calm aesthetic.
 - **Font**: Hack Nerd Font Mono with fallback.
+- **Window chrome**: Borderless window with a compact, draggable tab bar.
 - **Leader Key**: `Ctrl+l` with 1-second timeout (reserved for future use).
 
 ## Keybindings

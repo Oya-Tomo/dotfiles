@@ -62,5 +62,10 @@ return {
   color_scheme = "Kanagawa (Gogh)",
   font = wezterm.font_with_fallback({ "Hack Nerd Font Mono" }),
   font_size = 11,
+  -- GNOME on X11 adds a title bar when RESIZE is requested, so go borderless.
+  -- The window remains movable by dragging the tab bar or with Super+drag.
+  window_decorations = "NONE",
+  use_fancy_tab_bar = false,
+  hide_tab_bar_if_only_one_tab = false,
   -- use_ime = true,
 }
