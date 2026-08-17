@@ -1,53 +1,62 @@
 #!/usr/bin/env bash
 # Claude Code status line — inspired by Starship prompt
-# Layout: [time] directory  git_branch  model  context%
+# Layout: time  directory  git_branch  model  context_usage
+set -uo pipefail
 
 input=$(cat)
+
+# One field per line — tabs would collapse empty fields on `read`.
+mapfile -t fields < <(
+  jq -r '[
+    (.workspace.current_dir // ""),
+    (.model.display_name // .model.id // ""),
+    ((.context_window.current_usage // {})
+      | (.input_tokens // 0)
+        + (.output_tokens // 0)
+        + (.cache_creation_input_tokens // 0)
+        + (.cache_read_input_tokens // 0)),
+    (.context_window.context_window_size // 0),
+    (.context_window.used_percentage // 0)
+  ] | .[] | tostring' <<<"$input" 2>/dev/null
+)
+cwd=${fields[0]:-}
+model=${fields[1]:-}
+ctx_used=${fields[2]:-0}
+ctx_size=${fields[3]:-0}
+ctx_pct=${fields[4]:-0}
 
 # Time (HH:MM)
 time_str=$(date +%H:%M)
 
-# Directory — show basename like Starship with truncation
-cwd=$(echo "$input" | jq -r '.workspace.current_dir')
-project_dir=$(echo "$input" | jq -r '.workspace.project_dir')
-if [ "$cwd" = "$project_dir" ]; then
-  dir_str=$(basename "$cwd")
-else
-  # Show relative path from project root
-  rel="${cwd#"$project_dir"/}"
-  # Truncate like Starship: …/last_component if nested
-  parent=$(dirname "$rel")
-  base=$(basename "$rel")
-  if [ "$parent" = "." ]; then
-    dir_str="$base"
+# Directory — ~ for $HOME, truncated to the last 3 components like Starship
+[ -z "$cwd" ] && cwd=$PWD
+dir_str=${cwd/#"$HOME"/'~'}
+IFS='/' read -ra segs <<<"$dir_str"
+if [ "${#segs[@]}" -gt 3 ]; then
+  dir_str="…/${segs[-3]}/${segs[-2]}/${segs[-1]}"
+fi
+
+# Git branch, or short SHA when detached. Empty outside a repo.
+branch=$(git -C "$cwd" --no-optional-locks symbolic-ref --quiet --short HEAD 2>/dev/null) ||
+  branch=$(git -C "$cwd" --no-optional-locks rev-parse --short HEAD 2>/dev/null)
+
+# Context usage — used/limit in K tokens, coloured by how full the window is
+ctx_str=""
+if [ "${ctx_size:-0}" -gt 0 ] 2>/dev/null; then
+  pct=$(printf '%.0f' "$ctx_pct")
+  # green < 50%, yellow < 80%, red above
+  if [ "$pct" -lt 50 ]; then
+    ctx_color='0;32'
+  elif [ "$pct" -lt 80 ]; then
+    ctx_color='0;33'
   else
-    dir_str="…/$base"
+    ctx_color='1;31'
   fi
+  ctx_str=$(printf '\033[%sm%d/%dKtk %d%%\033[0m' \
+    "$ctx_color" "$(((ctx_used + 500) / 1000))" "$(((ctx_size + 500) / 1000))" "$pct")
 fi
 
-# Git branch
-branch=$(git -C "$cwd" --no-optional-locks rev-parse --abbrev-ref HEAD 2>/dev/null)
-if [ -n "$branch" ]; then
-  git_str="  $branch"
-fi
-
-# Model display name
-model=$(echo "$input" | jq -r '.model.display_name // empty')
-
-# Context usage
-used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
-if [ -n "$used" ]; then
-  used_int=$(printf "%.0f" "$used")
-  ctx_str="  ctx:${used_int}%"
-fi
-
-# Assemble: time | directory | git branch | model | context
-# Using ANSI colors (will be dimmed by the terminal)
-# Yellow for time and directory (matching Starship), gray for secondary info
-printf '\033[33m%s\033[0m %s%s\033[90m%s\033[0m%s%s' \
-  "$time_str" \
-  "$dir_str" \
-  "$git_str" \
-  "  $model" \
-  "$ctx_str" \
-  ""
+printf '\033[90m%s\033[0m \033[1;34m%s\033[0m' "$time_str" "$dir_str"
+[ -n "$branch" ] && printf ' \033[0;35m%s\033[0m' "$branch"
+[ -n "$model" ] && printf ' \033[0;36m%s\033[0m' "$model"
+[ -n "$ctx_str" ] && printf ' %s' "$ctx_str"
