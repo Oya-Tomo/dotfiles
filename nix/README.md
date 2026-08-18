@@ -20,6 +20,7 @@ nix/
             ├── lazygit.nix  # Lazygit package + config
             ├── neovim.nix   # Neovim package + config
             ├── starship.nix # Starship prompt package
+            ├── tmux.nix     # tmux package + config
             ├── vscode.nix   # VS Code package, extensions, formatters, and settings link
             ├── wezterm.nix  # WezTerm terminal package + config
             └── zsh.nix      # Deploys config for the host-installed Zsh

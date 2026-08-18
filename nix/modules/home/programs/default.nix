@@ -7,6 +7,7 @@
     ./vscode.nix
     ./wezterm.nix
     ./ghostty.nix
+    ./tmux.nix
     ./lazygit.nix
     ./claude.nix
   ];
