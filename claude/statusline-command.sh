@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Claude Code status line — inspired by Starship prompt
-# Layout: time  directory  git_branch  model  context_usage
+# Layout: time  directory  git_branch  model  effort  context_usage
 set -uo pipefail
 
 input=$(cat)
@@ -10,6 +10,7 @@ mapfile -t fields < <(
   jq -r '[
     (.workspace.current_dir // ""),
     (.model.display_name // .model.id // ""),
+    (.effort.level // ""),
     ((.context_window.current_usage // {})
       | (.input_tokens // 0)
         + (.output_tokens // 0)
@@ -21,9 +22,10 @@ mapfile -t fields < <(
 )
 cwd=${fields[0]:-}
 model=${fields[1]:-}
-ctx_used=${fields[2]:-0}
-ctx_size=${fields[3]:-0}
-ctx_pct=${fields[4]:-0}
+effort=${fields[2]:-}
+ctx_used=${fields[3]:-0}
+ctx_size=${fields[4]:-0}
+ctx_pct=${fields[5]:-0}
 
 # Time (HH:MM)
 time_str=$(date +%H:%M)
@@ -59,4 +61,5 @@ fi
 printf '\033[90m%s\033[0m \033[1;34m%s\033[0m' "$time_str" "$dir_str"
 [ -n "$branch" ] && printf ' \033[0;35m%s\033[0m' "$branch"
 [ -n "$model" ] && printf ' \033[0;36m%s\033[0m' "$model"
+[ -n "$effort" ] && printf ' \033[2;36m%s\033[0m' "$effort"
 [ -n "$ctx_str" ] && printf ' %s' "$ctx_str"
