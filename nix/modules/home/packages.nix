@@ -14,6 +14,7 @@
     dust
     hyperfine
     gh
+    git-lfs
     unzip
     zip
     curl
