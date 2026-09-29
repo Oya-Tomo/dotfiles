@@ -14,6 +14,7 @@ My personal configuration files for a productive development environment.
 | **Zsh** | [`zsh/`](zsh/README.md) | Host-installed shell with Home Manager-managed user configuration |
 | **Starship** | [`starship.toml`](starship.toml) | Shell prompt configuration |
 | **Lazygit** | [`lazygit/`](lazygit/) | Terminal UI for Git |
+| **Jujutsu** | [`jj/`](jj/) | Git-compatible version control system (`jj`) |
 | **Mise** | [`mise/`](mise/) | Tool version manager configuration |
 | **Claude Code** | [`claude/`](claude/) | Settings, statusline, Discord plugin config |
 | **Agents** | [`agents/`](agents/) | Shared AI agent instructions and skills |

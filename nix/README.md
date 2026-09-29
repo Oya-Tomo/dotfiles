@@ -17,6 +17,7 @@ nix/
             ├── claude.nix   # Claude Code/Codex settings and shared agent skills
             ├── direnv.nix   # [direnv](https://github.com/nix-community/nix-direnv) for per-directory env
             ├── ghostty.nix  # Ghostty terminal package + config
+            ├── jujutsu.nix  # Jujutsu (jj) package + config
             ├── lazygit.nix  # Lazygit package + config
             ├── neovim.nix   # Neovim package + config
             ├── starship.nix # Starship prompt package

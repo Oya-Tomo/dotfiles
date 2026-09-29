@@ -9,6 +9,7 @@
     ./ghostty.nix
     ./tmux.nix
     ./lazygit.nix
+    ./jujutsu.nix
     ./claude.nix
   ];
 }
