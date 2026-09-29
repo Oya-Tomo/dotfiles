@@ -74,6 +74,10 @@ if command -v direnv >/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
 # Lazygit wrapper that follows directory changes made within lazygit.
 function lg() {
   export LAZYGIT_NEW_DIR_FILE="$HOME/.lazygit/newdir"

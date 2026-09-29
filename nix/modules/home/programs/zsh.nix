@@ -7,6 +7,7 @@
 
   programs.starship.enableZshIntegration = false;
   programs.direnv.enableZshIntegration = false;
+  programs.zoxide.enableZshIntegration = false;
   programs.wezterm.enableZshIntegration = false;
   programs.lazygit.enableZshIntegration = false;
 

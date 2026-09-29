@@ -24,6 +24,7 @@ nix/
             ├── tmux.nix     # tmux package + config
             ├── vscode.nix   # VS Code package, extensions, formatters, and settings link
             ├── wezterm.nix  # WezTerm terminal package + config
+            ├── zoxide.nix   # [zoxide](https://github.com/ajeetdsouza/zoxide) for frecency-based `z` directory jumps
             └── zsh.nix      # Deploys config for the host-installed Zsh
 ```
 

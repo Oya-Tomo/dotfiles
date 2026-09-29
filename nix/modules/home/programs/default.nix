@@ -3,6 +3,7 @@
     ./zsh.nix
     ./starship.nix
     ./direnv.nix
+    ./zoxide.nix
     ./neovim.nix
     ./vscode.nix
     ./wezterm.nix
