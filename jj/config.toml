@@ -1,3 +1,6 @@
 [user]
 name = "Oya-Tomo"
 email = "82521012+Oya-Tomo@users.noreply.github.com"
+
+[snapshot]
+max-new-file-size = "50MiB"
