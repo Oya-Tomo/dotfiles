@@ -49,5 +49,7 @@
   ]) ++ [
     llmAgentPkgs.claude-code
     llmAgentPkgs.codex
+    llmAgentPkgs.opencode2
+    llmAgentPkgs.paseo-desktop
   ];
 }
