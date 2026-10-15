@@ -48,6 +48,7 @@
     nerd-fonts.hack
   ]) ++ [
     llmAgentPkgs.claude-code
+    llmAgentPkgs.ccusage
     llmAgentPkgs.codex
     llmAgentPkgs.opencode2
     llmAgentPkgs.paseo-desktop
