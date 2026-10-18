@@ -92,7 +92,9 @@ function lg() {
 alias tsen-on='sudo tailscale up --exit-node=${TS_EXIT_NODE}'
 alias tsen-off='sudo tailscale up --exit-node='
 
-# Orca runtime server kept alive by systemd and advertised on Tailscale.
+# Orca runtime server kept alive by systemd. It always binds 0.0.0.0, so
+# restrict LAN access with a firewall; the hostname resolves both locally and
+# through Tailscale MagicDNS.
 function orca-daemon() {
   case $1 in
     start)
@@ -101,7 +103,7 @@ function orca-daemon() {
         --property=RestartSec=5 \
         --property=StartLimitIntervalSec=0 \
         --setenv=PATH="$PATH" \
-        orca serve --port 26768 --pairing-address "$(tailscale ip -4)"
+        orca serve --port 26768 --pairing-address "$(hostname)"
       ;;
     stop)   systemctl --user stop orca ;;
     status) systemctl --user status orca ;;
