@@ -51,6 +51,7 @@
     llmAgentPkgs.ccusage
     llmAgentPkgs.codex
     llmAgentPkgs.opencode2
+    llmAgentPkgs.orca
     llmAgentPkgs.paseo-desktop
   ];
 }
