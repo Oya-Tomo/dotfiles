@@ -98,7 +98,8 @@ alias tsen-off='sudo tailscale up --exit-node='
 function orca-daemon() {
   case $1 in
     start)
-      systemd-run --user --unit=orca \
+      # --collect unloads the unit even when orca exits non-zero on stop.
+      systemd-run --user --unit=orca --collect \
         --property=Restart=always \
         --property=RestartSec=5 \
         --property=StartLimitIntervalSec=0 \
