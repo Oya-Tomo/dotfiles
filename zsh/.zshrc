@@ -92,6 +92,24 @@ function lg() {
 alias tsen-on='sudo tailscale up --exit-node=${TS_EXIT_NODE}'
 alias tsen-off='sudo tailscale up --exit-node='
 
+# Orca runtime server kept alive by systemd and advertised on Tailscale.
+function orca-daemon() {
+  case $1 in
+    start)
+      systemd-run --user --unit=orca \
+        --property=Restart=always \
+        --property=RestartSec=5 \
+        --property=StartLimitIntervalSec=0 \
+        --setenv=PATH="$PATH" \
+        orca serve --port 26768 --pairing-address "$(tailscale ip -4)"
+      ;;
+    stop)   systemctl --user stop orca ;;
+    status) systemctl --user status orca ;;
+    logs)   journalctl --user -u orca -f ;;
+    *)      echo "usage: orca-daemon {start|stop|status|logs}" >&2; return 1 ;;
+  esac
+}
+
 # Sync lazy.nvim lockfile to the dotfiles repository.
 alias nvim-lock-sync='cp ~/.local/share/nvim/lazy-lock.json ~/dotfiles/nvim/lazy-lock.json'
 
