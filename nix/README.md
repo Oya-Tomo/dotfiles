@@ -243,6 +243,10 @@ After adding or updating a skill, apply the links with:
 nix run home-manager -- switch --flake ~/dotfiles
 ```
 
+## Claude Code Settings
+
+`~/.claude/settings.json` is a regular, writable file rather than a Home Manager link, because Claude Code and tools such as Orca (which installs its agent hooks there) write to it at runtime. On every switch, Home Manager deep-merges `claude/settings.json` into it: repository values win, and keys that exist only in the local file are preserved. To drop a setting, remove it from the local file as well.
+
 ## Adding a New Program
 
 1. Create `programs/<name>.nix` with `programs.<name>` or `home.packages` + `xdg.configFile`.
