@@ -14,7 +14,6 @@ in
     ".claude/settings.json".source = ./../../../../claude/settings.json;
     ".claude/CLAUDE.md".source = sharedInstructions;
     ".claude/statusline-command.sh".source = ./../../../../claude/statusline-command.sh;
-    ".claude/claude-notify.sh".source = ./../../../../claude/claude-notify.sh;
     ".claude/channels/discord/access.json".source = ./../../../../claude/channels/discord/access.json;
     ".codex/AGENTS.md".source = sharedInstructions;
     ".agents/skills".source = sharedSkills;

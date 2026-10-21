@@ -19,39 +19,5 @@
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
   },
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/claude-notify.sh\" 'Claude Code' '処理が完了しました' 5000"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/claude-notify.sh\" 'Claude Code' '入力または許可を待っています'"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/claude-notify.sh\" --dismiss"
-          }
-        ]
-      }
-    ]
-  }
+  "preferredNotifChannel": "iterm2"
 }
