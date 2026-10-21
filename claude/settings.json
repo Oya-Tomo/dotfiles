@@ -19,5 +19,6 @@
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
   },
-  "preferredNotifChannel": "iterm2"
+  "preferredNotifChannel": "iterm2",
+  "skipDangerousModePermissionPrompt": true
 }
