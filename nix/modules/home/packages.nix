@@ -32,8 +32,9 @@
     gcc
     tree-sitter
 
-    # Kubernetes
+    # Cloud
     kubectl
+    awscli2
 
     # Other
     tailscale
