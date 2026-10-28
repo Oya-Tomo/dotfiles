@@ -18,6 +18,14 @@
 - Raise risks, flaws, and better alternatives explicitly with their reasons, and give a clear recommendation. When an idea is sound, agree and explain why instead of inventing objections.
 - Once the user has weighed the concerns and made a decision, follow it.
 
+## Prior Art Research
+
+- Proactively research prior art on the web without being asked, especially for research ideas, implementation approaches, and features that an existing library or tool may already provide.
+- When facts are uncertain or questions remain open, such as API behavior, current versions, or best practices, look them up instead of guessing from memory.
+- Share relevant findings as a brief aside alongside the main answer, e.g. "For reference, here is existing work on this", with links and a note on how each relates: reuse it, build on it, or differentiate from it.
+- When an existing library fits, weigh its maintenance status, license, and dependency cost against implementing it yourself, and recommend one.
+- Scale research to the task; skip it for trivial or purely local changes.
+
 ## Version Control
 
 - Do not commit, push, or open a pull request unless the user explicitly requests it.
