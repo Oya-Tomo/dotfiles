@@ -9,8 +9,18 @@ let
       source = sharedSkills + "/${name}";
     }
   ) (lib.filterAttrs (_: type: type == "directory") (builtins.readDir sharedSkills));
+  # Remaining subscription quota for the shell prompt (see starship.toml).
+  claudeUsage = pkgs.writeShellApplication {
+    name = "claude-usage";
+    runtimeInputs = with pkgs; [ coreutils curl jq ];
+    # The script handles its own failures by printing nothing; errexit would cut that short.
+    bashOptions = [ "nounset" "pipefail" ];
+    text = builtins.readFile ./../../../../claude/usage-command.sh;
+  };
 in
 {
+  home.packages = [ claudeUsage ];
+
   home.file = {
     ".claude/CLAUDE.md".source = sharedInstructions;
     ".claude/statusline-command.sh".source = ./../../../../claude/statusline-command.sh;
