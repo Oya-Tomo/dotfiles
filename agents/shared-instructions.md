@@ -29,7 +29,6 @@
 ## Version Control
 
 - Do not commit, push, or open a pull request unless the user explicitly requests it.
-- In a repository that contains `.jj`, perform all history operations (committing, describing, rewriting, bookmarks, fetching, and pushing) with `jj`. Use `git` only for read-only inspection and tools such as `gh`.
-- Before pushing with `jj git push`, make sure a bookmark points at the intended revision.
-- Recover from mistakes with `jj undo` or `jj op restore` instead of destructive `git` commands. Never pass `--ignore-immutable` unless the user explicitly requests it.
+- Use `git` for version control by default, even in a repository that contains `.jj`. Use Jujutsu (`jj`) only when the user explicitly requests it.
+- When using `jj`, make sure a bookmark points at the intended revision before `jj git push`, and recover from mistakes with `jj undo` or `jj op restore`. Never pass `--ignore-immutable` unless the user explicitly requests it.
 - Do not initialize Jujutsu in a repository or remove `.jj` unless the user explicitly requests it.
