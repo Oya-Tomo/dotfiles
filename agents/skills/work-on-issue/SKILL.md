@@ -27,6 +27,8 @@ Create an implementation plan grounded in specific components and dependencies. 
 
 ## Implement within scope
 
+Implement through `impl-with-monitoring`: brief a subagent with the issue's done conditions and validation method, then monitor it. The rules below belong in that brief; questions that need the user's approval go through the main thread.
+
 - Follow established project patterns unless the issue explicitly changes them.
 - Make the smallest coherent change that satisfies the done conditions.
 - Ask before expanding into unrelated cleanup, public API or UX decisions, security or data-retention policy, operational cost, or choices expensive to reverse.
@@ -41,7 +43,7 @@ Discover the project's required checks from repository docs, CI workflows, build
 
 For each failure, determine whether it comes from the current change, pre-existing repository state, or the environment. Fix failures caused by the change. Preserve evidence for inherited or environmental failures, and do not broaden scope to fix them without approval unless the issue cannot otherwise be validated.
 
-Review the complete diff against the selected base for correctness, regressions, scope creep, tests, documentation, and accidental unrelated changes. Fix actionable findings and rerun affected checks. If the same blocker survives two review/fix cycles, stop and request direction instead of looping indefinitely.
+Review the complete diff against the selected base for correctness, regressions, scope creep, tests, documentation, and accidental unrelated changes. Send actionable findings back to the implementing subagent and rerun affected checks. If the same blocker survives two review/fix cycles, stop and request direction instead of looping indefinitely.
 
 ## Finish at the requested boundary
 
