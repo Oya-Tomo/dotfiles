@@ -10,6 +10,8 @@
     jq
     fzf
     delta
+    difftastic
+    ast-grep
     tokei
     dust
     hyperfine
