@@ -5,7 +5,9 @@
     llmAgentPkgs.herdr
   ];
 
-  # Link the file rather than the directory: Herdr writes its logs and
-  # agent-detection overrides into ~/.config/herdr at runtime.
-  xdg.configFile."herdr/config.toml".source = ./../../../../herdr/config.toml;
+  # Herdr saves onboarding and settings-menu choices into config.toml, so link
+  # the working-tree file to keep it writable. Only the file is linked because
+  # Herdr also keeps logs, sockets, and session state in ~/.config/herdr.
+  xdg.configFile."herdr/config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/herdr/config.toml";
 }
