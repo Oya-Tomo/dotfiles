@@ -1,0 +1,10 @@
+# Herdr configuration - managed by dotfiles
+# Print every option and its default with `herdr --default-config`.
+
+[update]
+# Herdr is installed through Nix, so new versions arrive with flake updates.
+version_check = false
+
+[keys]
+# Ctrl+b is taken by the terminal emulators (previous pane), so use Ctrl+t like tmux.
+prefix = "ctrl+t"

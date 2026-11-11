@@ -9,6 +9,7 @@
     ./wezterm.nix
     ./ghostty.nix
     ./tmux.nix
+    ./herdr.nix
     ./lazygit.nix
     ./jujutsu.nix
     ./claude.nix

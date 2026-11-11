@@ -11,6 +11,7 @@ My personal configuration files for a productive development environment.
 | **WezTerm** | [`wezterm/`](wezterm/README.md) | Terminal with Kanagawa colorscheme, custom pane/tab shortcuts, and IDE layout support |
 | **Ghostty** | [`ghostty/`](ghostty/README.md) | Terminal with WezTerm-compatible keybindings, Kanagawa theme, and Hack Nerd Font |
 | **tmux** | [`tmux/`](tmux/README.md) | Terminal multiplexer with a `Ctrl+t` prefix and Kanagawa status line |
+| **Herdr** | [`herdr/`](herdr/) | Terminal multiplexer for AI coding agents with a `Ctrl+t` prefix |
 | **Zsh** | [`zsh/`](zsh/README.md) | Host-installed shell with Home Manager-managed user configuration |
 | **Starship** | [`starship.toml`](starship.toml) | Shell prompt configuration |
 | **Lazygit** | [`lazygit/`](lazygit/) | Terminal UI for Git |
