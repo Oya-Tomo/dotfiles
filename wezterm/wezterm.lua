@@ -1,28 +1,11 @@
 local wezterm = require("wezterm")
 
--- Alias Operation Custom Event
-wezterm.on("ide", function(window, pane)
-  -- Split top/bottom; bottom pane gets further divided
-  window:perform_action(
-    wezterm.action.SplitPane({
-      direction = 'Down',
-      size = { Percent = 30 },
-    }),
-    pane
-  )
-  -- Divide the bottom pane into 3 columns
-  window:perform_action(
-    wezterm.action.SplitPane({ direction = 'Right', size = { Percent = 66 } }),
-    pane
-  )
-  window:perform_action(
-    wezterm.action.SplitPane({ direction = 'Right', size = { Percent = 50 } }),
-    pane
-  )
-  window:perform_action(
-    wezterm.action.ActivatePaneDirection('Up'),
-    pane
-  )
+-- Run the same script as the `ide` shell command against the focused pane
+local ide_layout = wezterm.action_callback(function(_, pane)
+  wezterm.background_child_process({
+    "env", "WEZTERM_PANE=" .. pane:pane_id(),
+    "zsh", wezterm.config_dir .. "/alias/ide.sh",
+  })
 end)
 
 return {
@@ -57,7 +40,7 @@ return {
     { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("Clipboard"), },
     { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom("Clipboard"), },
     -- Alias Shortcut
-    { key = "i", mods = "CTRL|ALT",   action = wezterm.action.EmitEvent("ide"), },
+    { key = "i", mods = "CTRL|ALT",   action = ide_layout, },
   },
   color_scheme = "Kanagawa (Gogh)",
   font = wezterm.font_with_fallback({ "Hack Nerd Font Mono" }),

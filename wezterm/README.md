@@ -40,15 +40,19 @@ A Wezterm terminal configuration with a Kanagawa colorscheme, custom keybindings
 | `Ctrl+Shift+c` | Copy to clipboard |
 | `Ctrl+Shift+v` | Paste from clipboard |
 
-### Events
+### Layout
 | Keybinding | Action |
 | :--- | :--- |
-| `Ctrl+Alt+i` | Emit `ide` event — create IDE layout (split into 4 panes) |
+| `Ctrl+Alt+i` | Run `alias/ide.sh` on the focused pane — default IDE layout (one pane above three) |
 
 ### Alias Scripts
 The `alias/` directory contains convenience scripts:
 
-- **`ide.sh`**: Creates a 4-pane IDE layout — top pane (70% height), left bottom pane (30% width), right split of that (50%), and remaining area. Panes clear on creation.
+- **`ide.sh`** (`ide [TOP BOTTOM]`): Arranges the current pane into two rows.
+  - `ide` — one top pane (70% height) above three equal bottom panes.
+  - `ide 2 3` — two panes on top, three below; both rows get the same height and each row is divided into equal columns.
+
+  Focus ends on the top-left pane. The `ide` shell command and `Ctrl+Alt+i` both run this script; only the shell command accepts pane counts.
 
 ## Installation
 

@@ -62,7 +62,7 @@ fi
 if [[ "$TERM_PROGRAM" == ghostty ]]; then
   ide() { echo 'Ghostty does not support IDE layout from script.' }
 elif [[ "$TERM_PROGRAM" == WezTerm ]]; then
-  alias ide='zsh ~/.config/wezterm/alias/ide.sh'
+  ide() { zsh ~/.config/wezterm/alias/ide.sh "$@" && clear }
 fi
 
 # Prompt and directory hooks
