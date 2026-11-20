@@ -109,13 +109,9 @@ function orca-daemon() {
     stop)   systemctl --user stop orca ;;
     status) systemctl --user status orca ;;
     logs)   journalctl --user -u orca -f ;;
-    info)
-      # Endpoints and pairing URLs printed by the current run only.
-      journalctl --user -u orca -o cat --no-pager \
-        _SYSTEMD_INVOCATION_ID="$(systemctl --user show -p InvocationID --value orca)" |
-        grep -E '^(Bound endpoint|Advertised endpoint|Web client URL|Pairing URL):'
-      ;;
-    *)      echo "usage: orca-daemon {start|stop|status|logs|info}" >&2; return 1 ;;
+    # Asks the running server for a pairing offer; pass --mobile for Orca Mobile.
+    pair)   shift; orca pair --address "$(hostname)" "$@" ;;
+    *)      echo "usage: orca-daemon {start|stop|status|logs|pair [--mobile] [--rotate]}" >&2; return 1 ;;
   esac
 }
 
