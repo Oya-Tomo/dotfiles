@@ -27,7 +27,9 @@ Create an implementation plan grounded in specific components and dependencies. 
 
 ## Implement within scope
 
-Implement through `impl-with-monitoring`: brief a subagent with the issue's done conditions and validation method, then monitor it. The rules below belong in that brief; questions that need the user's approval go through the main thread.
+Before editing any implementation file, load the `impl-with-monitoring` skill (with the Skill tool in Claude Code) and implement by following it: brief a subagent with the issue's done conditions and validation method, then monitor it. This applies however small the change is. The main thread does not implement the change itself unless the user explicitly says so.
+
+Include these rules in the subagent's brief. Questions that need the user's approval go through the main thread.
 
 - Follow established project patterns unless the issue explicitly changes them.
 - Make the smallest coherent change that satisfies the done conditions.
