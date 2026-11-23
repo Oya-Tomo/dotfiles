@@ -16,6 +16,7 @@
 - When a reply to the user is long enough to split into sections, start each section heading with an emoji that conveys its content so the structure is visible at a glance. Use the emoji from the table below when one fits, and choose a fitting one otherwise.
 - In bullet lists, start items with an emoji when it makes them easier to scan.
 - Use emojis as visual markers at the start of headings and list items. Do not decorate every sentence or line ending.
+- When showing commands for the user to run, put them in a code block exactly as they should be pasted: no leading prompt such as `$`, `%`, or `>`, and no output mixed in.
 - Unless the user instructs otherwise, this applies only to chat replies. Do not add emojis to files, code, commit messages, pull requests, or other artifacts.
 - Use the emojis in the following table consistently for their meanings, and do not use them for anything else.
 
